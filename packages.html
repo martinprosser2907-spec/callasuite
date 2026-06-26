@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALLA SUITE™ | Modern UK Business Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        bronze: '#B8825A',        /* Precision Bronze match from your SVG branding */
+                        bronzeHover: '#9E6E4A',
+                        darkBg: '#0B0B0B',        /* High-fidelity premium deep black */
+                        cardBg: '#FFFFFF',
+                        offWhite: '#FBF9F6',      /* Warm cream off-white */
+                        darkBody: '#1C1C1C'       /* Charcoal black value from your SVG fill rule */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+    </style>
+</head>
+<body class="bg-offWhite text-darkBody font-sans min-h-screen flex flex-col antialiased">
+
+    <header class="bg-darkBg border-b border-stone-800 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="#" onclick="switchView('home')" class="flex items-center focus:outline-none transition hover:opacity-90 h-full py-1 origin-left">
+                <svg width="240" height="72" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                    <title>Calla Suite</title>
+                    <defs>
+                        <linearGradient id="header-suite-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                            <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                        </linearGradient>
+                    </defs>
+                    <text y="75" x="200" text-anchor="middle">
+                        <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A" letter-spacing="2px">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#FFFFFF" letter-spacing="2px">alla</tspan>
+                    </text>
+                    <rect x="155" y="84" width="90" height="1" fill="url(#header-suite-grad)"/>
+                    <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#EDE8E0" font-weight="300" opacity="0.4">SUITE</text>
+                </svg>
+            </a>
+
+            <nav class="hidden lg:flex space-x-6 text-xs font-medium uppercase tracking-wider">
+                <a href="#" onclick="switchView('home')" class="text-stone-300 hover:text-bronze transition">Home</a>
+                <a href="#" onclick="switchView('solo')" class="text-bronze font-semibold hover:text-white transition">Calla Solo <span class="bg-bronze/10 text-bronze text-[9px] px-1.5 py-0.5 rounded ml-1 font-sans font-normal lowercase">live</span></a>
+                <a href="#" onclick="switchView('accounts')" class="text-stone-500 hover:text-stone-300 transition">Calla Accounts</a>
+                <a href="#" onclick="switchView('pm')" class="text-stone-500 hover:text-stone-300 transition">Calla PM</a>
+                <a href="#" onclick="switchView('pro')" class="text-stone-500 hover:text-stone-300 transition">Calla Pro</a>
+                <a href="#" onclick="switchView('payroll')" class="text-stone-500 hover:text-stone-300 transition">Calla Payroll</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="switchView('signup')" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded transition shadow-sm">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <section id="page-home" class="page-view active">
+            <div class="bg-darkBg text-white border-b border-stone-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-center relative overflow-hidden">
+                    <div class="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
+                        <div class="mb-4 transform scale-110">
+                            <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                                <title>Calla Suite</title>
+                                <defs>
+                                    <linearGradient id="hero-suite-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                                        <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                                    </linearGradient>
+                                </defs>
+                                <text y="75" x="200" text-anchor="middle">
+                                    <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A" letter-spacing="2px">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#FFFFFF" letter-spacing="2px">alla</tspan>
+                                </text>
+                                <rect x="155" y="84" width="90" height="1" fill="url(#hero-suite-grad)"/>
+                                <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#EDE8E0" font-weight="300" opacity="0.4">SUITE</text>
+                            </svg>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-6 text-stone-100 uppercase">
+                            Your Modern UK Business Platform
+                        </h1>
+                        <p class="text-base sm:text-lg text-stone-400 mb-10 max-w-xl mx-auto font-light">
+                            Calla Solo is officially live and ready for deployment. Includes intelligent Mileage logging and inbound Email OCR modules for just <span class="text-white font-semibold">£6 per month</span>.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
+                            <button onclick="switchView('solo')" class="w-full sm:w-auto bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded shadow-lg transition">Explore Calla Solo</button>
+                            <button onclick="switchView('signup')" class="w-full sm:w-auto bg-transparent border border-stone-700 hover:border-stone-500 text-stone-300 text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">Get Started Instantly</button>
+                        </div>
+                        <p class="text-xs text-stone-500 mt-4 font-light">No commitments. Cancel online at any time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-xl font-black uppercase tracking-wider text-stone-900">Select Your Operational Tier</h2>
+                    <p class="text-stone-500 text-sm mt-2 font-light">Choose the application tailored to your current UK business configuration.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                    
+                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between transition hover:shadow-md">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">Available Now</span>
+                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Phase 1</span>
+                            </div>
+                            
+                            <div class="flex justify-center transform scale-75 -my-4">
+                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                                  <title>Calla Solo</title>
+                                  <defs>
+                                    <linearGradient id="solo-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                                    </linearGradient>
+                                  </defs>
+                                  <style>
+                                    .c-italic-solo { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
+                                    .c-rest-solo { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                                    .sub-solo { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                                  </style>
+                                  <text y="75" x="200" text-anchor="middle">
+                                    <tspan class="c-italic-solo">C</tspan><tspan class="c-rest-solo">alla</tspan>
+                                  </text>
+                                  <rect x="140" y="84" width="120" height="1" fill="url(#solo-card-grad)"/>
+                                  <text x="200" y="104" text-anchor="middle" class="sub-solo">SOLO</text>
+                                </svg>
+                            </div>
+
+                            <p class="text-stone-600 text-xs mb-4 leading-relaxed font-light pt-4 border-t border-stone-100">
+                                The ultimate toolkit built for sole traders and contractors. Includes **Calla Pay** mobile receipt scanning, inbound email OCR, and smart mileage log tracking panels natively.
+                            </p>
+                            <div class="text-lg font-bold text-stone-900 mb-6">£6 <span class="text-xs font-normal text-stone-500">/ month fixed</span></div>
+                        </div>
+                        <button onclick="switchView('solo')" class="w-full bg-darkBg hover:bg-stone-900 text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition">View Product Features</button>
+                    </div>
+
+                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
+                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
+                            </div>
+                            <div class="flex justify-center transform scale-75 -my-4">
+                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                                  <title>Calla Accounts</title>
+                                  <defs>
+                                    <linearGradient id="accounts-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                                    </linearGradient>
+                                  </defs>
+                                  <style>
+                                    .c-italic-acc { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
+                                    .c-rest-acc { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                                    .sub-acc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                                  </style>
+                                  <text y="75" x="200" text-anchor="middle">
+                                    <tspan class="c-italic-acc">C</tspan><tspan class="c-rest-acc">alla</tspan>
+                                  </text>
+                                  <rect x="140" y="84" width="120" height="1" fill="url(#accounts-card-grad)"/>
+                                  <text x="200" y="104" text-anchor="middle" class="sub-acc">ACCOUNTS</text>
+                                </svg>
+                            </div>
+                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Multi-user double-entry accounting software for small businesses, advanced tracking ledgers, and scaled VAT systems.</p>
+                        </div>
+                        <button onclick="switchView('accounts')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
+                    </div>
+
+                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
+                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
+                            </div>
+                            <div class="flex justify-center transform scale-75 -my-4">
+                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                                  <title>Calla Practice Management</title>
+                                  <defs>
+                                    <linearGradient id="pm-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                                    </linearGradient>
+                                  </defs>
+                                  <style>
+                                    .c-italic-pm { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
+                                    .c-rest-pm { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                                    .sub-pm { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                                  </style>
+                                  <text y="75" x="200" text-anchor="middle">
+                                    <tspan class="c-italic-pm">C</tspan><tspan class="c-rest-pm">alla</tspan>
+                                  </text>
+                                  <rect x="104" y="84" width="192" height="1" fill="url(#pm-card-grad)"/>
+                                  <text x="200" y="104" text-anchor="middle" class="sub-pm">PRACTICE MANAGEMENT</text>
+                                </svg>
+                            </div>
+                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Comprehensive client onboarding matrices, internal accounting practice management workflows, and document systems.</p>
+                        </div>
+                        <button onclick="switchView('pm')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
+                    </div>
+
+                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
+                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
+                            </div>
+                            <div class="flex justify-center transform scale-75 -my-4">
+                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                                  <title>Calla Pro</title>
+                                  <defs>
+                                    <linearGradient id="pro-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
+                                      <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
+                                    </linearGradient>
+                                  </defs>
+                                  <style>
+                                    .c-italic-pro { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
+                                    .c-rest-pro { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                                    .sub-pro { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                                  </style>
+                                  <text y="75" x="200" text-anchor="middle">
+                                    <tspan class="c-italic-pro">C</tspan><tspan class="c-rest-pro">alla</tspan>
+                                  </text>
+                                  <rect x="158" y="84" width="84" height="1" fill="url(#pro-card-grad)"/>
+                                  <text x="200" y="104" text-anchor="middle" class="sub-pro">PRO</text>
+                                </svg>
+                            </div>
+                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Statutory accounts production, iXBRL direct filing infrastructure to Companies House, and integrated approval portals.</p>
+                        </div>
+                        <button onclick="switchView('pro')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="border-t border-stone-200 bg-stone-50/50 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">Upcoming Platform Modules</h4>
+                    <div class="inline-block bg-white border border-stone-200 rounded-xl p-4 shadow-sm transition hover:shadow-md">
+                        <div class="flex items-center justify-between border-b border-stone-100 pb-2 mb-2">
+                            <span class="text-[9px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">Roadmap In Dev</span>
+                            <span class="text-[10px] font-medium text-stone-400 ml-4">Full Suite Integration</span>
+                        </div>
+                        <div class="flex justify-center py-2 px-6">
+                            <svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <text y="42" x="10" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-weight="400" font-size="44" fill="#CFA07A">C</text>
+                                <text y="42" x="42" font-family="Georgia,'Times New Roman',serif" font-style="normal" font-weight="400" font-size="44" fill="#1C1C1C">alla</text>
+                                <text x="100" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="4" fill="#1C1C1C" opacity="0.4">PAYROLL</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-solo" class="page-view">
+            <div class="bg-white border-b border-stone-200 py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="flex justify-center mb-4 transform scale-110">
+                        <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                          <title>Calla Solo</title>
+                          <defs>
+                            <linearGradient id="solopagegrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                              <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                            </linearGradient>
+                          </defs>
+                          <text y="75" x="200" text-anchor="middle">
+                            <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A" letter-spacing="2px">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#1C1C1C" letter-spacing="2px">alla</tspan>
+                          </text>
+                          <rect x="140" y="84" width="120" height="1" fill="url(#solopagegrad)"/>
+                          <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#787068" font-weight="300">SOLO</text>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-black text-stone-900 uppercase mb-4">Pure Plain English Bookkeeping for Single Operators</h2>
+                    <p class="text-stone-600 max-w-2xl mx-auto font-light text-sm leading-relaxed">
+                        Avoid unnecessary terms or forced calculations. Calla Solo is tailored to track money owed to you, record what you have spent, and format your complete tax documentation cleanly for HMRC.
+                    </p>
+                    <div class="mt-8">
+                        <button onclick="switchView('signup')" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded shadow transition">Subscribe for £6 / Month</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="h-6 w-32 flex items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Receivables Matrix</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Track money owed to you instantly</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed font-light">
+                            Maintain a live, crisp plain-English view of your open sales. Log incoming client trackings, review pending balances, and trace historical receipts seamlessly from an ultra-clean master control console.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm relative min-h-[220px]">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-lg font-medium text-stone-900 font-sans">Money I'm owed</span>
+                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ New invoice</button>
+                        </div>
+                        <p class="text-xs text-bronze font-light mb-6 -mt-4">Got a paper ledger? Import income and bills from it &rarr;</p>
+                        
+                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold text-stone-900 font-sans">Bob building co</h4>
+                                <p class="text-[11px] text-stone-400 font-normal">Due 25 Jul 2026</p>
+                                <div class="pt-1">
+                                    <span class="text-[10px] font-medium text-amber-800 bg-amber-50 border border-amber-100/50 px-2 py-0.5 rounded">Waiting to be paid</span>
+                                </div>
+                            </div>
+                            <div class="text-right flex flex-col items-end justify-center space-y-1">
+                                <span class="text-sm font-semibold text-stone-900 font-sans">£400.00</span>
+                                <span class="text-[11px] text-stone-400 font-normal hover:underline cursor-pointer">They've paid</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm flex flex-col space-y-6">
+                        <div class="text-left">
+                            <span class="text-xs text-stone-400 font-medium cursor-pointer flex items-center gap-1">&larr; MONEY I'M OWED</span>
+                            <h3 class="text-xl font-medium text-stone-900 mt-1 font-sans">New invoice</h3>
+                        </div>
+                        
+                        <div class="border border-stone-100 rounded-xl p-6 bg-stone-50/30 space-y-4">
+                            <div>
+                                <label class="block text-xs text-stone-400 font-medium mb-1">Who is this invoice for?</label>
+                                <input type="text" value="Bob building co" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-stone-400 font-medium mb-1">Their email</label>
+                                <input type="text" value="bob@bobbuilding.com" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <label class="block text-xs text-stone-400 font-medium mb-1">What did you do?</label>
+                                    <input type="text" value="dropped a package" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-stone-400 font-medium mb-1">How much?</label>
+                                    <div class="relative">
+                                        <input type="text" value="400" disabled class="w-full bg-white border border-stone-300 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed text-left">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-bronze font-light cursor-pointer">+ Add another line</div>
+                            <div>
+                                <label class="block text-xs text-stone-400 font-medium mb-1">When is it due?</label>
+                                <select disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-500 font-normal cursor-not-allowed">
+                                    <option>30 days</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-sm text-stone-400 font-medium">Total</span>
+                            <span class="text-lg font-medium text-stone-900 font-sans">£400.00</span>
+                        </div>
+                        <button class="w-full bg-darkBody text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-md shadow pointer-events-none">Send invoice</button>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="h-6 w-32 flex items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Execution Panels</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Log precisely what you have spent</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed font-light">
+                            Rapidly spin up clean ledger components on the move. Preserve structured values down to your storage tables exactly when tasks complete to lock in deductions correctly.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="h-6 w-32 flex items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Expense Ledgers</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Track expenditures & running costs</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed font-light">
+                            Keep rigorous tabs on structural outgoings, supply tokens, and operational infrastructure metrics. Categorize running bills cleanly down to specified business classifications automatically.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-medium text-stone-900 font-sans">My bills</span>
+                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Record a bill</button>
+                        </div>
+                        
+                        <p class="text-xs text-stone-600 font-light leading-relaxed">
+                            <span class="inline-block mr-1">📱</span> <span class="font-semibold text-stone-800">Tip:</span> open the Calla Pay app and use Scan Receipt to add bills straight from your phone &mdash; they'll land here to check. <span class="text-bronze cursor-pointer hover:underline">Got a paper ledger instead? Import it &rarr;</span>
+                        </p>
+
+                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between mt-4">
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold text-stone-900 font-sans">Chaiiwala</h4>
+                                <p class="text-[11px] text-stone-400 font-normal">2 Jun 2026 &middot; Office and admin</p>
+                            </div>
+                            <span class="text-sm font-semibold text-stone-900 font-sans">£9.20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="h-6 w-32 flex items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">HMRC Pricing Sync</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Automated HMRC Mileage Tracking</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed font-light">
+                            Your active mileage parameters auto-compile approved baseline tiers straight into your structural reporting. No manual calculations required.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-medium text-stone-900 font-sans">My mileage</span>
+                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Log mileage</button>
+                        </div>
+                        
+                        <div class="bg-white border border-stone-100 rounded-xl p-6 shadow-sm space-y-1">
+                            <span class="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">THIS TAX YEAR</span>
+                            <span class="text-xs text-stone-800 font-normal block">874 miles driven for work</span>
+                            <h4 class="text-2xl font-normal text-stone-900 font-sans"><span class="font-bold">£393.30</span> you can claim back</h4>
+                            <p class="text-[11px] text-stone-400 font-normal">First 10,000 miles at 45p &mdash; 9,126 miles remaining at that rate</p>
+                        </div>
+
+                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
+                            <div class="space-y-1">
+                                <h5 class="text-sm font-medium text-stone-900 font-sans">Lands End to John O'Groats &mdash; <span class="text-stone-500">To drop off a package</span></h5>
+                                <p class="text-[11px] text-stone-400 font-normal">25 Jun 2026 &middot; 874 miles</p>
+                            </div>
+                            <span class="text-sm font-semibold text-stone-900 font-sans">£393.30</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-darkBg text-white py-16 text-center">
+                <h3 class="text-xl font-bold tracking-wider mb-4 uppercase">Ready to stop dreading January?</h3>
+                <button onclick="switchView('signup')" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">Start Your Subscription Free Trial</button>
+            </div>
+        </section>
+
+        <section id="page-signup" class="page-view">
+            <div class="max-w-md mx-auto px-4 py-16">
+                <div class="bg-white border border-stone-200 rounded-xl p-8 shadow-md">
+                    
+                    <div class="mb-6 border-b border-stone-100 pb-4">
+                        <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                            <span>Setup Step</span>
+                            <span id="step-indicator-text">1 of 3: Profile Registration</span>
+                        </div>
+                        <div class="w-full bg-stone-100 h-1.5 rounded-full mt-2 overflow-hidden">
+                            <div id="step-progress-bar" class="bg-bronze h-full w-1/3 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <form id="signup-master-form" onsubmit="handleFormSubmission(event)">
+                        <div id="form-step-1" class="form-step-content space-y-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-stone-900 mb-2">Create secure login credentials</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">First Name</label>
+                                    <input type="text" required class="w-full border border-stone-300 px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Last Name</label>
+                                    <input type="text" required class="w-full border border-stone-300 px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Email Address</label>
+                                <input type="email" required class="w-full border border-stone-300 px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Secure Password</label>
+                                <input type="password" required class="w-full border border-stone-300 px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                            </div>
+                            <button type="button" onclick="navigateStep(2)" class="w-full bg-darkBg hover:bg-stone-900 text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition mt-2">Next Step</button>
+                        </div>
+
+                        <div id="form-step-2" class="form-step-content hidden space-y-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-stone-900 mb-2">Configure Business Profile</h3>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Trading Name</label>
+                                <input type="text" required class="w-full border border-stone-300 px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Entity Classification Type</label>
+                                <select class="w-full border border-stone-300 bg-white px-3 py-2 rounded text-sm focus:outline-none focus:border-bronze">
+                                    <option>Sole Trader Operation</option>
+                                    <option>Limited Company (Single Director)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-stone-400 mb-1">Tax Year Start Parameters (Locked)</label>
+                                <input type="text" value="6 April" disabled class="w-full border border-stone-200 bg-stone-50 px-3 py-2 rounded text-sm text-stone-400 font-medium cursor-not-allowed">
+                            </div>
+                            <div class="flex space-x-2 pt-2">
+                                <button type="button" onclick="navigateStep(1)" class="w-1/3 border border-stone-200 text-stone-600 text-xs font-bold uppercase tracking-wider rounded hover:bg-stone-50 transition">Back</button>
+                                <button type="button" onclick="navigateStep(3)" class="w-2/3 bg-darkBg hover:bg-stone-900 text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition">Go to Payment</button>
+                            </div>
+                        </div>
+
+                        <div id="form-step-3" class="form-step-content hidden space-y-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-stone-900 mb-2">Secure Stripe Checkout Element</h3>
+                            
+                            <div class="bg-stone-50 border border-stone-200 rounded p-4 flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="text-[9px] font-bold text-stone-400 uppercase tracking-wider block">Plan Selected</span>
+                                    <span class="text-sm font-bold text-stone-800">Calla Solo Subscription</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg font-black text-stone-900">£6.00</span>
+                                    <span class="text-[10px] text-stone-500 block">per month</span>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-300 rounded p-4 bg-stone-50/50 space-y-3">
+                                <div class="flex justify-between items-center border-b border-stone-200 pb-2 mb-2">
+                                    <span class="text-[9px] font-bold text-stone-400 uppercase tracking-wider">Stripe Card Fields</span>
+                                    <span class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest">🔒 Encrypted Connection</span>
+                                </div>
+                                <input type="text" placeholder="Card Number (16 digits)" class="w-full bg-white border border-stone-200 px-3 py-2 rounded text-xs focus:outline-none focus:border-bronze">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" placeholder="MM / YY" class="bg-white border border-stone-200 px-3 py-2 rounded text-xs focus:outline-none focus:border-bronze">
+                                    <input type="text" placeholder="CVC" class="bg-white border border-stone-200 px-3 py-2 rounded text-xs focus:outline-none focus:border-bronze">
+                                </div>
+                            </div>
+                            
+                            <div class="text-center text-[10px] text-stone-400 pt-1">Payments are encrypted and processed securely by Stripe.</div>
+
+                            <div class="flex space-x-2 pt-2">
+                                <button type="button" onclick="navigateStep(2)" class="w-1/3 border border-stone-200 text-stone-600 text-xs font-bold uppercase tracking-wider rounded hover:bg-stone-50 transition">Back</button>
+                                <button type="submit" class="w-2/3 bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition shadow">Authorize (£6/mo)</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-accounts" class="page-view">
+            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
+                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
+                <div class="flex justify-center mt-6 mb-4 transform scale-110">
+                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                      <title>Calla Accounts</title>
+                      <defs>
+                        <linearGradient id="accounts-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                          <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                        </linearGradient>
+                      </defs>
+                      <style>
+                        .c-italic-acc-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
+                        .c-rest-acc-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                        .sub-acc-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                      </style>
+                      <text y="75" x="200" text-anchor="middle">
+                        <tspan class="c-italic-acc-p">C</tspan><tspan class="c-rest-acc-p">alla</tspan>
+                      </text>
+                      <rect x="140" y="84" width="120" height="1" fill="url(#accounts-page-grad)"/>
+                      <text x="200" y="104" text-anchor="middle" class="sub-acc-p">ACCOUNTS</text>
+                    </svg>
+                </div>
+                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
+                    The Calla Accounts multi-user double-entry accounting software platform is currently in active configuration and structural development.
+                </p>
+                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
+            </div>
+        </section>
+
+        <section id="page-pm" class="page-view">
+            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
+                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
+                <div class="flex justify-center mt-6 mb-4 transform scale-110">
+                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                      <title>Calla Practice Management</title>
+                      <defs>
+                        <linearGradient id="pm-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
+                          <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
+                        </linearGradient>
+                      </defs>
+                      <style>
+                        .c-italic-pm-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
+                        .c-rest-pm-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                        .sub-pm-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                      </style>
+                      <text y="75" x="200" text-anchor="middle">
+                        <tspan class="c-italic-pm-p">C</tspan><tspan class="c-rest-pm-p">alla</tspan>
+                      </text>
+                      <rect x="104" y="84" width="192" height="1" fill="url(#pm-page-grad)"/>
+                      <text x="200" y="104" text-anchor="middle" class="sub-pm-p">PRACTICE MANAGEMENT</text>
+                    </svg>
+                </div>
+                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
+                    Our dedicated accounting practice management orchestration engine is currently running through private pre-release internal development timelines.
+                </p>
+                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
+            </div>
+        </section>
+
+        <section id="page-pro" class="page-view">
+            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
+                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
+                <div class="flex justify-center mt-6 mb-4 transform scale-110">
+                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                      <title>Calla Pro</title>
+                      <defs>
+                        <linearGradient id="pro-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
+                          <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
+                        </linearGradient>
+                      </defs>
+                      <style>
+                        .c-italic-pro-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
+                        .c-rest-pro-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                        .sub-pro-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
+                      </style>
+                      <text y="75" x="200" text-anchor="middle">
+                        <tspan class="c-italic-pro-p">C</tspan><tspan class="c-rest-pro-p">alla</tspan>
+                      </text>
+                      <rect x="158" y="84" width="84" height="1" fill="url(#pro-page-grad)"/>
+                      <text x="200" y="104" text-anchor="middle" class="sub-pro-p">PRO</text>
+                    </svg>
+                </div>
+                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
+                    The statutory accounts production suite, linked corporation filing loops, and electronic signature systems are currently inside development pipeline loops.
+                </p>
+                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
+            </div>
+        </section>
+
+        <section id="page-payroll" class="page-view">
+            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
+                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
+                <div class="flex justify-center mt-6 mb-4 transform scale-110">
+                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
+                      <title>Calla Payroll</title>
+                      <defs>
+                        <linearGradient id="payroll-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
+                          <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
+                        </linearGradient>
+                      </defs>
+                      <style>
+                        .c-italic-pay-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
+                        .c-rest-pay-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
+                        .sub-pay-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #1C1C1C; font-weight: 300; opacity: 0.4; }
+                      </style>
+                      <text y="75" x="200" text-anchor="middle">
+                        <tspan class="c-italic-pay-p">C</tspan><tspan class="c-rest-pay-p">alla</tspan>
+                      </text>
+                      <rect x="140" y="84" width="120" height="1" fill="url(#payroll-page-grad)"/>
+                      <text x="200" y="104" text-anchor="middle" class="sub-pay-p">PAYROLL</text>
+                    </svg>
+                </div>
+                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
+                    Full UK payroll engines factoring RTI FPS/EPS transmissions and automated auto-enrolment pension upload pipelines are processing inside development cycles.
+                </p>
+                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darkBg text-stone-400 border-t border-stone-900 py-12 text-xs font-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
+            <p>CALLA SUITE™ | Prosser Management | Confidential | June 2026</p>
+            <div class="flex justify-center space-x-6 text-[11px] font-medium uppercase tracking-wider">
+                <a href="#" onclick="switchView('home')" class="hover:text-white transition">Home</a>
+                <a href="#" onclick="switchView('solo')" class="hover:text-white transition">Calla Solo</a>
+                <a href="#" onclick="switchView('accounts')" class="hover:text-white transition">Calla Accounts</a>
+                <a href="#" onclick="switchView('pm')" class="hover:text-white transition">Calla PM</a>
+                <a href="#" onclick="switchView('pro')" class="hover:text-white transition">Calla Pro</a>
+                <a href="#" onclick="switchView('payroll')" class="hover:text-white transition">Calla Payroll</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            switchView('home');
+            navigateStep(1);
+        };
+
+        function switchView(targetPageId) {
+            document.querySelectorAll('.page-view').forEach(element => {
+                element.classList.remove('active');
+            });
+            const activePage = document.getElementById('page-' + targetPageId);
+            if(activePage) {
+                activePage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function navigateStep(targetStepInt) {
+            document.querySelectorAll('.form-step-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('form-step-' + targetStepInt).classList.remove('hidden');
+
+            const progressPct = targetStepInt === 1 ? '33.3%' : targetStepInt === 2 ? '66.6%' : '100%';
+            document.getElementById('step-progress-bar').style.width = progressPct;
+            
+            const stepTexts = [
+                "1 of 3: Profile Registration",
+                "2 of 3: Configure Business Profile",
+                "3 of 3: Secure Stripe Checkout Element"
+            ];
+            document.getElementById('step-indicator-text').innerText = stepTexts[targetStepInt - 1];
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            alert('Stripe initialization complete at £6/mo. Redirecting data streams to callamanager.uk onboarding channels.');
+            switchView('home');
+            navigateStep(1);
+            document.getElementById('signup-master-form').reset();
+        }
+    </script>
+</body>
+</html>
