@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALLA SUITE™ | Modern UK Business Platform</title>
-    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts Inter for Clean UI Controls -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,11 +34,9 @@
 </head>
 <body class="bg-offWhite text-darkBody font-sans min-h-screen flex flex-col antialiased">
 
-    <!-- GLOBAL NAVIGATION HEADER -->
     <header class="bg-darkBg border-b border-stone-800 sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- GLOBAL HEADER LOGO: Resized to fit banner cleanly and professionally -->
             <a href="#" onclick="switchView('home')" class="flex items-center focus:outline-none transition hover:opacity-90 h-full py-1 origin-left">
                 <svg width="240" height="72" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                     <title>Calla Suite</title>
@@ -58,7 +54,6 @@
                 </svg>
             </a>
 
-            <!-- Navigation Links -->
             <nav class="hidden lg:flex space-x-6 text-xs font-medium uppercase tracking-wider">
                 <a href="#" onclick="switchView('home')" class="text-stone-300 hover:text-bronze transition">Home</a>
                 <a href="#" onclick="switchView('solo')" class="text-bronze font-semibold hover:text-white transition">Calla Solo <span class="bg-bronze/10 text-bronze text-[9px] px-1.5 py-0.5 rounded ml-1 font-sans font-normal lowercase">live</span></a>
@@ -66,6 +61,7 @@
                 <a href="#" onclick="switchView('pm')" class="text-stone-500 hover:text-stone-300 transition">Calla PM</a>
                 <a href="#" onclick="switchView('pro')" class="text-stone-500 hover:text-stone-300 transition">Calla Pro</a>
                 <a href="#" onclick="switchView('payroll')" class="text-stone-500 hover:text-stone-300 transition">Calla Payroll</a>
+                <a href="https://callamanager.uk/solo/login" class="text-stone-300 hover:text-bronze transition border-l border-stone-800 pl-6">Existing User</a>
             </nav>
 
             <div class="flex items-center space-x-4">
@@ -74,12 +70,9 @@
         </div>
     </header>
 
-    <!-- MULTI-PAGE VIEWPORT ENGINE -->
     <main class="flex-grow">
 
-        <!-- PAGE 1: HOME PAGE -->
         <section id="page-home" class="page-view active">
-            <!-- Dark Premium Hero Section -->
             <div class="bg-darkBg text-white border-b border-stone-800">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-center relative overflow-hidden">
                     <div class="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
@@ -114,17 +107,14 @@
                 </div>
             </div>
 
-            <!-- Product Grid Matrix Elements -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="text-center max-w-2xl mx-auto mb-12">
                     <h2 class="text-xl font-black uppercase tracking-wider text-stone-900">Select Your Operational Tier</h2>
                     <p class="text-stone-500 text-sm mt-2 font-light">Choose the application tailored to your current UK business configuration.</p>
                 </div>
 
-                <!-- 4-Column Grid containing purely the original SVGs without font labels -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                     
-                    <!-- Product 1 Card: Calla Solo (LIVE) -->
                     <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between transition hover:shadow-md">
                         <div>
                             <div class="flex justify-between items-center mb-4">
@@ -132,7 +122,6 @@
                                 <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Phase 1</span>
                             </div>
                             
-                            <!-- Calla Solo SVG inside grid element -->
                             <div class="flex justify-center transform scale-75 -my-4">
                                 <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                                   <title>Calla Solo</title>
@@ -163,14 +152,12 @@
                         <button onclick="switchView('solo')" class="w-full bg-darkBg hover:bg-stone-900 text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition">View Product Features</button>
                     </div>
 
-                    <!-- Product 2 Card: Calla Accounts (IN DEVELOPMENT) -->
                     <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
                         <div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
                                 <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
                             </div>
-                            <!-- Calla Accounts SVG inside grid element -->
                             <div class="flex justify-center transform scale-75 -my-4">
                                 <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                                   <title>Calla Accounts</title>
@@ -197,14 +184,12 @@
                         <button onclick="switchView('accounts')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
                     </div>
 
-                    <!-- Product 3 Card: Calla PM (IN DEVELOPMENT) -->
                     <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
                         <div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
                                 <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
                             </div>
-                            <!-- Calla Practice Management SVG inside grid element -->
                             <div class="flex justify-center transform scale-75 -my-4">
                                 <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                                   <title>Calla Practice Management</title>
@@ -231,14 +216,12 @@
                         <button onclick="switchView('pm')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
                     </div>
 
-                    <!-- Product 4 Card: Calla Pro (IN DEVELOPMENT) -->
                     <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
                         <div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
                                 <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
                             </div>
-                            <!-- Calla Pro SVG inside grid element -->
                             <div class="flex justify-center transform scale-75 -my-4">
                                 <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                                   <title>Calla Pro</title>
@@ -268,7 +251,6 @@
                 </div>
             </div>
 
-            <!-- Lower Auxiliary Roadmap Section featuring Calla Payroll SVG -->
             <div class="border-t border-stone-200 bg-stone-50/50 py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">Upcoming Platform Modules</h4>
@@ -277,7 +259,6 @@
                             <span class="text-[9px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">Roadmap In Dev</span>
                             <span class="text-[10px] font-medium text-stone-400 ml-4">Full Suite Integration</span>
                         </div>
-                        <!-- Calla Payroll SVG embedded directly -->
                         <div class="flex justify-center py-2 px-6">
                             <svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
                                 <text y="42" x="10" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-weight="400" font-size="44" fill="#CFA07A">C</text>
@@ -290,9 +271,7 @@
             </div>
         </section>
 
-        <!-- PAGE 2: CALLA SOLO DEEP DIVE PRODUCT PAGE -->
         <section id="page-solo" class="page-view">
-            <!-- Dedicated Calla Solo Showcase Banner -->
             <div class="bg-white border-b border-stone-200 py-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div class="flex justify-center mb-4 transform scale-110">
@@ -321,10 +300,8 @@
                 </div>
             </div>
 
-            <!-- Meticulous Visual Fidelity Feature Rows matching actual application uploads -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
                 
-                <!-- ROW 1: MONEY I'M OWED DASHBOARD SECTION (Meticulously matched to image_73d83c.png) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-5 space-y-4">
                         <div class="h-6 w-32 flex items-center">
@@ -335,7 +312,6 @@
                             Maintain a live, crisp plain-English view of your open sales. Log incoming client trackings, review pending balances, and trace historical receipts seamlessly from an ultra-clean master control console.
                         </p>
                     </div>
-                    <!-- HIGH FIDELITY DASHBOARD SIMULATION MAPPED FROM YOUR APPS -->
                     <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm relative min-h-[220px]">
                         <div class="flex justify-between items-center mb-6">
                             <span class="text-lg font-medium text-stone-900 font-sans">Money I'm owed</span>
@@ -343,7 +319,6 @@
                         </div>
                         <p class="text-xs text-bronze font-light mb-6 -mt-4">Got a paper ledger? Import income and bills from it &rarr;</p>
                         
-                        <!-- Actual Live Invoice Row Container matching app snapshot exactly -->
                         <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
                             <div class="space-y-1">
                                 <h4 class="text-sm font-semibold text-stone-900 font-sans">Bob building co</h4>
@@ -360,7 +335,6 @@
                     </div>
                 </div>
 
-                <!-- ROW 2: NEW INVOICE INTERACTIVE PANEL (Meticulously matched to image_73d43e.png) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm flex flex-col space-y-6">
                         <div class="text-left">
@@ -368,7 +342,6 @@
                             <h3 class="text-xl font-medium text-stone-900 mt-1 font-sans">New invoice</h3>
                         </div>
                         
-                        <!-- High Fidelity Form Elements Replication -->
                         <div class="border border-stone-100 rounded-xl p-6 bg-stone-50/30 space-y-4">
                             <div>
                                 <label class="block text-xs text-stone-400 font-medium mb-1">Who is this invoice for?</label>
@@ -417,7 +390,6 @@
                     </div>
                 </div>
 
-                <!-- ROW 3: BILLS CONTROL CONSOLE SECTION (Meticulously matched to image_74357d.png) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-5 space-y-4">
                         <div class="h-6 w-32 flex items-center">
@@ -428,19 +400,16 @@
                             Keep rigorous tabs on structural outgoings, supply tokens, and operational infrastructure metrics. Categorize running bills cleanly down to specified business classifications automatically.
                         </p>
                     </div>
-                    <!-- HIGH FIDELITY BILLS INTERFACE ARCHITECTURE -->
                     <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm space-y-4">
                         <div class="flex justify-between items-center">
                             <span class="text-lg font-medium text-stone-900 font-sans">My bills</span>
                             <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Record a bill</button>
                         </div>
                         
-                        <!-- Real-time Instruction Notification component from interface upload -->
                         <p class="text-xs text-stone-600 font-light leading-relaxed">
                             <span class="inline-block mr-1">📱</span> <span class="font-semibold text-stone-800">Tip:</span> open the Calla Pay app and use Scan Receipt to add bills straight from your phone &mdash; they'll land here to check. <span class="text-bronze cursor-pointer hover:underline">Got a paper ledger instead? Import it &rarr;</span>
                         </p>
 
-                        <!-- Live Bill Item Row Replication matching snapshot values precisely -->
                         <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between mt-4">
                             <div class="space-y-1">
                                 <h4 class="text-sm font-semibold text-stone-900 font-sans">Chaiiwala</h4>
@@ -451,7 +420,6 @@
                     </div>
                 </div>
 
-                <!-- ROW 4: MILEAGE ACQUISITION PANEL (Meticulously matched to image_7367bf.png) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-5 space-y-4">
                         <div class="h-6 w-32 flex items-center">
@@ -468,7 +436,6 @@
                             <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Log mileage</button>
                         </div>
                         
-                        <!-- Master Mileage Claim Status Window Block -->
                         <div class="bg-white border border-stone-100 rounded-xl p-6 shadow-sm space-y-1">
                             <span class="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">THIS TAX YEAR</span>
                             <span class="text-xs text-stone-800 font-normal block">874 miles driven for work</span>
@@ -476,7 +443,6 @@
                             <p class="text-[11px] text-stone-400 font-normal">First 10,000 miles at 45p &mdash; 9,126 miles remaining at that rate</p>
                         </div>
 
-                        <!-- Individual Mileage Track Row Entry Component -->
                         <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
                             <div class="space-y-1">
                                 <h5 class="text-sm font-medium text-stone-900 font-sans">Lands End to John O'Groats &mdash; <span class="text-stone-500">To drop off a package</span></h5>
@@ -489,29 +455,15 @@
 
             </div>
 
-            <!-- Bottom CTA Banner -->
             <div class="bg-darkBg text-white py-16 text-center">
                 <h3 class="text-xl font-bold tracking-wider mb-4 uppercase">Ready to stop dreading January?</h3>
                 <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">Start Your Subscription Free Trial</button>
             </div>
         </section>
 
-        <!-- PAGE 3: SIGN UP EMBED FALLBACK (ROUTED TO LINK) -->
-        <section id="page-signup" class="page-view">
-            <div class="max-w-md mx-auto px-4 py-32 text-center">
-                <div class="bg-white border border-stone-200 rounded-xl p-8 shadow-md space-y-4">
-                    <h3 class="text-sm font-bold uppercase tracking-wider text-stone-900">Secure Account Initialization</h3>
-                    <p class="text-xs text-stone-500 font-light">You are being seamlessly routed through our encrypted Stripe billing matrix portal to complete verification.</p>
-                    <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="w-full bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition shadow">Proceed to Portal</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 4: ACCOUNTS HOLDING SECTION VIEW -->
         <section id="page-accounts" class="page-view">
             <div class="max-w-2xl mx-auto px-4 py-24 text-center">
                 <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Accounts SVG Header -->
                 <div class="flex justify-center mt-6 mb-4 transform scale-110">
                     <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                       <title>Calla Accounts</title>
@@ -540,11 +492,9 @@
             </div>
         </section>
 
-        <!-- PAGE 5: PM HOLDING SECTION VIEW -->
         <section id="page-pm" class="page-view">
             <div class="max-w-2xl mx-auto px-4 py-24 text-center">
                 <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Practice Management SVG Header -->
                 <div class="flex justify-center mt-6 mb-4 transform scale-110">
                     <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                       <title>Calla Practice Management</title>
@@ -573,11 +523,9 @@
             </div>
         </section>
 
-        <!-- PAGE 6: PRO HOLDING SECTION VIEW -->
         <section id="page-pro" class="page-view">
             <div class="max-w-2xl mx-auto px-4 py-24 text-center">
                 <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Pro SVG Header -->
                 <div class="flex justify-center mt-6 mb-4 transform scale-110">
                     <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                       <title>Calla Pro</title>
@@ -606,11 +554,9 @@
             </div>
         </section>
 
-        <!-- PAGE 7: PAYROLL HOLDING SECTION VIEW -->
         <section id="page-payroll" class="page-view">
             <div class="max-w-2xl mx-auto px-4 py-24 text-center">
                 <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Payroll SVG Header matching accounts/pm/pro alignments -->
                 <div class="flex justify-center mt-6 mb-4 transform scale-110">
                     <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
                       <title>Calla Payroll</title>
@@ -640,7 +586,6 @@
         </section>
     </main>
 
-    <!-- GLOBAL SYSTEM FOOTER -->
     <footer class="bg-darkBg text-stone-400 border-t border-stone-900 py-12 text-xs font-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
             <p>CALLA SUITE™ | Prosser Management | Confidential | June 2026</p>
@@ -655,7 +600,6 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE CONFIGURATION SINGLE PAGE APPS (SPA) ROUTER -->
     <script>
         window.onload = function() {
             switchView('home');
