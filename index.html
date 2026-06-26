@@ -1,738 +1,705 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALLA SUITE™ | Modern UK Business Platform</title>
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts Inter for Clean UI Controls -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        bronze: '#B8825A',        /* Precision Bronze match from your SVG branding */
-                        bronzeHover: '#9E6E4A',
-                        darkBg: '#0B0B0B',        /* High-fidelity premium deep black */
-                        cardBg: '#FFFFFF',
-                        offWhite: '#FBF9F6',      /* Warm cream off-white */
-                        darkBody: '#1C1C1C'       /* Charcoal black value from your SVG fill rule */
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calla Suite™ | Modern UK Business Software</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif']
+          },
+          colors: {
+            bronze:      '#B8825A',
+            bronzeDark:  '#9A6A44',
+            bronzeLight: '#F5EDE4',
+            ink:         '#111111',
+            inkSoft:     '#1C1C1E',
+            stone:       '#F7F5F2',
+            muted:       '#6B6560',
+            rule:        '#E5E2DD'
+          }
         }
-    </script>
-    <style>
-        .page-view { display: none; }
-        .page-view.active { display: block; }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .nav-link { transition: color .15s; }
+    .nav-link:hover { color: #B8825A; }
+
+    /* Calla wordmark shared style */
+    .wm-c    { font-family: Lora, Georgia, serif; font-style: italic; font-weight: 300; fill: #B8825A; }
+    .wm-rest { font-family: Lora, Georgia, serif; font-style: normal; font-weight: 300; }
+    .wm-sub  { font-family: Inter, sans-serif; letter-spacing: .35em; font-weight: 400; }
+
+    /* Feature row alternating */
+    .feature-row:nth-child(even) .feature-text { order: 2; }
+    .feature-row:nth-child(even) .feature-visual { order: 1; }
+
+    /* Subtle hover lift on cards */
+    .card-lift { transition: box-shadow .2s, transform .2s; }
+    .card-lift:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
+
+    /* Input look-alikes */
+    .mock-input {
+      background: #fff;
+      border: 1px solid #E5E2DD;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: .8125rem;
+      color: #333;
+      width: 100%;
+    }
+    .mock-label {
+      display: block;
+      font-size: .6875rem;
+      font-weight: 500;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
-<body class="bg-offWhite text-darkBody font-sans min-h-screen flex flex-col antialiased">
+<body class="bg-stone text-ink font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- GLOBAL NAVIGATION HEADER -->
-    <header class="bg-darkBg border-b border-stone-800 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- GLOBAL HEADER LOGO: Resized to fit banner cleanly and professionally -->
-            <a href="#" onclick="switchView('home')" class="flex items-center focus:outline-none transition hover:opacity-90 h-full py-1 origin-left">
-                <svg width="240" height="72" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                    <title>Calla Suite</title>
-                    <defs>
-                        <linearGradient id="header-suite-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                            <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                        </linearGradient>
-                    </defs>
-                    <text y="75" x="200" text-anchor="middle">
-                        <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A" letter-spacing="2px">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#FFFFFF" letter-spacing="2px">alla</tspan>
-                    </text>
-                    <rect x="155" y="84" width="90" height="1" fill="url(#header-suite-grad)"/>
-                    <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#EDE8E0" font-weight="300" opacity="0.4">SUITE</text>
-                </svg>
-            </a>
+<!-- ═══ NAVIGATION ═══════════════════════════════════════════════════════════ -->
+<header class="bg-inkSoft border-b border-white/5 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 h-[68px] flex items-center justify-between gap-8">
 
-            <!-- Navigation Links -->
-            <nav class="hidden lg:flex space-x-6 text-xs font-medium uppercase tracking-wider">
-                <a href="#" onclick="switchView('home')" class="text-stone-300 hover:text-bronze transition">Home</a>
-                <a href="#" onclick="switchView('solo')" class="text-bronze font-semibold hover:text-white transition">Calla Solo <span class="bg-bronze/10 text-bronze text-[9px] px-1.5 py-0.5 rounded ml-1 font-sans font-normal lowercase">live</span></a>
-                <a href="#" onclick="switchView('accounts')" class="text-stone-500 hover:text-stone-300 transition">Calla Accounts</a>
-                <a href="#" onclick="switchView('pm')" class="text-stone-500 hover:text-stone-300 transition">Calla PM</a>
-                <a href="#" onclick="switchView('pro')" class="text-stone-500 hover:text-stone-300 transition">Calla Pro</a>
-                <a href="#" onclick="switchView('payroll')" class="text-stone-500 hover:text-stone-300 transition">Calla Payroll</a>
-                <a href="#" onclick="switchView('app-download')" class="text-stone-500 hover:text-stone-300 transition">Get Mobile App</a>
-                <a href="https://callamanager.uk/solo/login" class="text-stone-300 hover:text-bronze transition border-l border-stone-800 pl-6">Existing User</a>
-            </nav>
+    <!-- Wordmark -->
+    <a href="#" onclick="go('home')" class="flex-shrink-0 flex items-center h-full py-2 hover:opacity-85 transition-opacity">
+      <svg width="160" height="48" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+        <text y="68" x="160" text-anchor="middle">
+          <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#FFFFFF">alla</tspan>
+        </text>
+        <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="10" fill="#FFFFFF" opacity="0.35">SUITE</text>
+      </svg>
+    </a>
 
-            <div class="flex items-center space-x-4">
-                <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded transition shadow-sm">Sign Up</button>
-            </div>
+    <!-- Nav links -->
+    <nav class="hidden lg:flex items-center gap-7 text-[11px] font-semibold uppercase tracking-widest text-white/50">
+      <a href="#" onclick="go('home')"    class="nav-link hover:text-white/90">Home</a>
+      <a href="#" onclick="go('solo')"    class="nav-link text-bronze flex items-center gap-1.5">
+        Calla Solo
+        <span class="text-[9px] bg-bronze/15 text-bronze border border-bronze/20 px-1.5 py-0.5 rounded font-sans normal-case tracking-normal">Live</span>
+      </a>
+      <a href="#" onclick="go('accounts')" class="nav-link">Calla Accounts</a>
+      <a href="#" onclick="go('pm')"       class="nav-link">Calla PM</a>
+      <a href="#" onclick="go('pro')"      class="nav-link">Calla Pro</a>
+      <a href="#" onclick="go('payroll')"  class="nav-link">Calla Payroll</a>
+      <a href="#" onclick="go('pay')"      class="nav-link">Calla Pay App</a>
+      <a href="https://callamanager.uk/solo/login" class="nav-link border-l border-white/10 pl-7 text-white/40 hover:text-white/80">Sign in</a>
+    </nav>
+
+    <a href="https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00"
+       class="flex-shrink-0 bg-bronze hover:bg-bronzeDark text-white text-[11px] font-bold uppercase tracking-widest px-5 py-2.5 rounded transition">
+      Get Started
+    </a>
+  </div>
+</header>
+
+<!-- ═══ PAGES ════════════════════════════════════════════════════════════════ -->
+<main class="flex-grow">
+
+<!-- ─── HOME ─────────────────────────────────────────────────────────────── -->
+<section id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="bg-inkSoft text-white">
+    <div class="max-w-4xl mx-auto px-6 pt-24 pb-28 text-center">
+      <svg width="320" height="96" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-8">
+        <text y="68" x="160" text-anchor="middle">
+          <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#FFFFFF">alla</tspan>
+        </text>
+        <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="10" fill="#FFFFFF" opacity="0.35">SUITE</text>
+      </svg>
+
+      <p class="text-white/40 text-xs font-semibold uppercase tracking-widest mb-5">UK Business Software</p>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+        Everything your business needs.<br>
+        <span class="text-bronze">Nothing it doesn't.</span>
+      </h1>
+      <p class="text-white/55 text-base sm:text-lg font-light max-w-xl mx-auto mb-10 leading-relaxed">
+        Calla Solo is live now — track your income, expenses and mileage, then submit your tax return in one click. From £6 a month.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <button onclick="go('solo')"
+          class="bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition shadow-lg">
+          See Calla Solo
+        </button>
+        <a href="https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00"
+          class="border border-white/15 hover:border-white/40 text-white/70 hover:text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">
+          Start free trial
+        </a>
+      </div>
+      <p class="text-white/25 text-xs mt-5">No commitment. Cancel any time.</p>
+    </div>
+  </div>
+
+  <!-- Product grid -->
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-14">
+      <p class="text-xs font-semibold uppercase tracking-widest text-muted mb-2">The Suite</p>
+      <h2 class="text-2xl font-black uppercase tracking-tight">Built for UK businesses</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- Solo — live -->
+      <div class="bg-white border border-rule rounded-2xl p-6 flex flex-col card-lift">
+        <div class="flex justify-between items-start mb-5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">Live now</span>
         </div>
-    </header>
-
-    <!-- MULTI-PAGE VIEWPORT ENGINE -->
-    <main class="flex-grow">
-
-        <!-- PAGE 1: HOME PAGE -->
-        <section id="page-home" class="page-view active">
-            <!-- Dark Premium Hero Section -->
-            <div class="bg-darkBg text-white border-b border-stone-800">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 text-center relative overflow-hidden">
-                    <div class="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
-                        <div class="mb-4 transform scale-110">
-                            <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                                <title>Calla Suite</title>
-                                <defs>
-                                    <linearGradient id="hero-suite-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                                        <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                                    </linearGradient>
-                                </defs>
-                                <text y="75" x="200" text-anchor="middle">
-                                    <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A" letter-spacing="2px">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#FFFFFF" letter-spacing="2px">alla</tspan>
-                                </text>
-                                <rect x="155" y="84" width="90" height="1" fill="url(#hero-suite-grad)"/>
-                                <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#EDE8E0" font-weight="300" opacity="0.4">SUITE</text>
-                            </svg>
-                        </div>
-                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-6 text-stone-100 uppercase">
-                            Your Modern UK Business Platform
-                        </h1>
-                        <p class="text-base sm:text-lg text-stone-400 mb-10 max-w-xl mx-auto font-light">
-                            Calla Solo is officially live and ready for deployment. Includes intelligent Mileage logging and inbound Email OCR modules for just <span class="text-white font-semibold">£6 per month</span>.
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
-                            <button onclick="switchView('solo')" class="w-full sm:w-auto bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded shadow-lg transition">Explore Calla Solo</button>
-                            <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="w-full sm:w-auto bg-transparent border border-stone-700 hover:border-stone-50 text-stone-300 text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">Get Started Instantly</button>
-                        </div>
-                        <p class="text-xs text-stone-500 mt-4 font-light">No commitments. Cancel online at any time.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Grid Matrix Elements -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-xl font-black uppercase tracking-wider text-stone-900">Select Your Operational Tier</h2>
-                    <p class="text-stone-500 text-sm mt-2 font-light">Choose the application tailored to your current UK business configuration.</p>
-                </div>
-
-                <!-- 4-Column Grid containing purely the original SVGs without font labels -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-                    
-                    <!-- Product 1 Card: Calla Solo (LIVE) -->
-                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between transition hover:shadow-md">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">Available Now</span>
-                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Phase 1</span>
-                            </div>
-                            
-                            <!-- Calla Solo SVG inside grid element -->
-                            <div class="flex justify-center transform scale-75 -my-4">
-                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                                  <title>Calla Solo</title>
-                                  <defs>
-                                    <linearGradient id="solo-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                                    </linearGradient>
-                                  </defs>
-                                  <style>
-                                    .c-italic-solo { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
-                                    .c-rest-solo { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                                    .sub-solo { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                                  </style>
-                                  <text y="75" x="200" text-anchor="middle">
-                                    <tspan class="c-italic-solo">C</tspan><tspan class="c-rest-solo">alla</tspan>
-                                  </text>
-                                  <rect x="140" y="84" width="120" height="1" fill="url(#solo-card-grad)"/>
-                                  <text x="200" y="104" text-anchor="middle" class="sub-solo">SOLO</text>
-                                </svg>
-                            </div>
-
-                            <p class="text-stone-600 text-xs mb-4 leading-relaxed font-light pt-4 border-t border-stone-100">
-                                The ultimate toolkit built for sole traders and contractors. Includes **Calla Pay** mobile receipt scanning, inbound email OCR, and smart mileage log tracking panels natively.
-                            </p>
-                            <div class="text-lg font-bold text-stone-900 mb-6">£6 <span class="text-xs font-normal text-stone-500">/ month fixed</span></div>
-                        </div>
-                        <button onclick="switchView('solo')" class="w-full bg-darkBg hover:bg-stone-900 text-white text-xs font-bold uppercase tracking-widest py-3 rounded transition">View Product Features</button>
-                    </div>
-
-                    <!-- Product 2 Card: Calla Accounts (IN DEVELOPMENT) -->
-                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
-                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
-                            </div>
-                            <!-- Calla Accounts SVG inside grid element -->
-                            <div class="flex justify-center transform scale-75 -my-4">
-                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                                  <title>Calla Accounts</title>
-                                  <defs>
-                                    <linearGradient id="accounts-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                                    </linearGradient>
-                                  </defs>
-                                  <style>
-                                    .c-italic-acc { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
-                                    .c-rest-acc { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                                    .sub-acc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                                  </style>
-                                  <text y="75" x="200" text-anchor="middle">
-                                    <tspan class="c-italic-acc">C</tspan><tspan class="c-rest-acc">alla</tspan>
-                                  </text>
-                                  <rect x="140" y="84" width="120" height="1" fill="url(#accounts-card-grad)"/>
-                                  <text x="200" y="104" text-anchor="middle" class="sub-acc">ACCOUNTS</text>
-                                </svg>
-                            </div>
-                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Multi-user double-entry accounting software for small businesses, advanced tracking ledgers, and scaled VAT systems.</p>
-                        </div>
-                        <button onclick="switchView('accounts')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
-                    </div>
-
-                    <!-- Product 3 Card: Calla PM (IN DEVELOPMENT) -->
-                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
-                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
-                            </div>
-                            <!-- Calla Practice Management SVG inside grid element -->
-                            <div class="flex justify-center transform scale-75 -my-4">
-                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                                  <title>Calla Practice Management</title>
-                                  <defs>
-                                    <linearGradient id="pm-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                                      <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                                    </linearGradient>
-                                  </defs>
-                                  <style>
-                                    .c-italic-pm { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
-                                    .c-rest-pm { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                                    .sub-pm { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                                  </style>
-                                  <text y="75" x="200" text-anchor="middle">
-                                    <tspan class="c-italic-pm">C</tspan><tspan class="c-rest-pm">alla</tspan>
-                                  </text>
-                                  <rect x="104" y="84" width="192" height="1" fill="url(#pm-card-grad)"/>
-                                  <text x="200" y="104" text-anchor="middle" class="sub-pm">PRACTICE MANAGEMENT</text>
-                                </svg>
-                            </div>
-                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Comprehensive client onboarding matrices, internal accounting practice management workflows, and document systems.</p>
-                        </div>
-                        <button onclick="switchView('pm')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
-                    </div>
-
-                    <!-- Product 4 Card: Calla Pro (IN DEVELOPMENT) -->
-                    <div class="bg-cardBg border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col justify-between opacity-75 bg-stone-50/50 relative">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">In Development</span>
-                                <span class="text-xs font-medium text-stone-400 uppercase tracking-wider">Holding Page</span>
-                            </div>
-                            <!-- Calla Pro SVG inside grid element -->
-                            <div class="flex justify-center transform scale-75 -my-4">
-                                <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                                  <title>Calla Pro</title>
-                                  <defs>
-                                    <linearGradient id="pro-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
-                                      <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
-                                    </linearGradient>
-                                  </defs>
-                                  <style>
-                                    .c-italic-pro { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
-                                    .c-rest-pro { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                                    .sub-pro { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                                  </style>
-                                  <text y="75" x="200" text-anchor="middle">
-                                    <tspan class="c-italic-pro">C</tspan><tspan class="c-rest-pro">alla</tspan>
-                                  </text>
-                                  <rect x="158" y="84" width="84" height="1" fill="url(#pro-card-grad)"/>
-                                  <text x="200" y="104" text-anchor="middle" class="sub-pro">PRO</text>
-                                </svg>
-                            </div>
-                            <p class="text-stone-500 text-xs leading-relaxed font-light mb-6 pt-4 border-t border-stone-100">Statutory accounts production, iXBRL direct filing infrastructure to Companies House, and integrated approval portals.</p>
-                        </div>
-                        <button onclick="switchView('pro')" class="w-full border border-stone-200 text-stone-400 text-xs font-bold uppercase tracking-widest py-3 rounded hover:bg-stone-100 transition">Open Holding Details</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Lower Auxiliary Roadmap Section featuring Calla Payroll SVG -->
-            <div class="border-t border-stone-200 bg-stone-50/50 py-12">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">Upcoming Platform Modules</h4>
-                    <div class="inline-block bg-white border border-stone-200 rounded-xl p-4 shadow-sm transition hover:shadow-md">
-                        <div class="flex items-center justify-between border-b border-stone-100 pb-2 mb-2">
-                            <span class="text-[9px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">Roadmap In Dev</span>
-                            <span class="text-[10px] font-medium text-stone-400 ml-4">Full Suite Integration</span>
-                        </div>
-                        <!-- Calla Payroll SVG embedded directly -->
-                        <div class="flex justify-center py-2 px-6">
-                            <svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-                                <text y="42" x="10" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-weight="400" font-size="44" fill="#CFA07A">C</text>
-                                <text y="42" x="42" font-family="Georgia,'Times New Roman',serif" font-style="normal" font-weight="400" font-size="44" fill="#1C1C1C">alla</text>
-                                <text x="100" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="4" fill="#1C1C1C" opacity="0.4">PAYROLL</text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 2: CALLA SOLO DEEP DIVE PRODUCT PAGE -->
-        <section id="page-solo" class="page-view">
-            <!-- Dedicated Calla Solo Showcase Banner -->
-            <div class="bg-white border-b border-stone-200 py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div class="flex justify-center mb-4 transform scale-110">
-                        <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                          <title>Calla Solo</title>
-                          <defs>
-                            <linearGradient id="solopagegrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                              <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                              <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                            </linearGradient>
-                          </defs>
-                          <text y="75" x="200" text-anchor="middle">
-                            <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300" font-size="72px" fill="#B8825A; letter-spacing: 2px;">C</tspan><tspan font-family="Georgia, 'Times New Roman', serif" font-style="normal" font-weight="300" font-size="72px" fill="#1C1C1C" letter-spacing: 2px">alla</tspan>
-                          </text>
-                          <rect x="140" y="84" width="120" height="1" fill="url(#solopagegrad)"/>
-                          <text x="200" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11px" letter-spacing="4.8px" fill="#787068" font-weight="300">SOLO</text>
-                        </svg>
-                    </div>
-                    <h2 class="text-xl font-black text-stone-900 uppercase mb-4">Pure Plain English Bookkeeping for Single Operators</h2>
-                    <p class="text-stone-600 max-w-2xl mx-auto font-light text-sm leading-relaxed">
-                        Avoid unnecessary terms or forced calculations. Calla Solo is tailored to track money owed to you, record what you have spent, and format your complete tax documentation cleanly for HMRC.
-                    </p>
-                    <div class="mt-8">
-                        <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded shadow transition">Subscribe for £6 / Month</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Meticulous Visual Fidelity Feature Rows matching actual application uploads -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24">
-                
-                <!-- ROW 1: MONEY I'M OWED DASHBOARD SECTION (Meticulously matched to image_73d83c.png) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="h-6 w-32 flex items-center">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Receivables Matrix</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Track money owed to you instantly</h3>
-                        <p class="text-sm text-stone-600 leading-relaxed font-light">
-                            Maintain a live, crisp plain-English view of your open sales. Log incoming client trackings, review pending balances, and trace historical receipts seamlessly from an ultra-clean master control console.
-                        </p>
-                    </div>
-                    <!-- HIGH FIDELITY DASHBOARD SIMULATION MAPPED FROM YOUR APPS -->
-                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm relative min-h-[220px]">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="text-lg font-medium text-stone-900 font-sans">Money I'm owed</span>
-                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ New invoice</button>
-                        </div>
-                        <p class="text-xs text-bronze font-light mb-6 -mt-4">Got a paper ledger? Import income and bills from it &rarr;</p>
-                        
-                        <!-- Actual Live Invoice Row Container matching app snapshot exactly -->
-                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
-                            <div class="space-y-1">
-                                <h4 class="text-sm font-semibold text-stone-900 font-sans">Bob building co</h4>
-                                <p class="text-[11px] text-stone-400 font-normal">Due 25 Jul 2026</p>
-                                <div class="pt-1">
-                                    <span class="text-[10px] font-medium text-amber-800 bg-amber-50 border border-amber-100/50 px-2 py-0.5 rounded">Waiting to be paid</span>
-                                </div>
-                            </div>
-                            <div class="text-right flex flex-col items-end justify-center space-y-1">
-                                <span class="text-sm font-semibold text-stone-900 font-sans">£400.00</span>
-                                <span class="text-[11px] text-stone-400 font-normal hover:underline cursor-pointer">They've paid</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROW 2: NEW INVOICE INTERACTIVE PANEL (Meticulously matched to image_73d43e.png) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm flex flex-col space-y-6">
-                        <div class="text-left">
-                            <span class="text-xs text-stone-400 font-medium cursor-pointer flex items-center gap-1">&larr; MONEY I'M OWED</span>
-                            <h3 class="text-xl font-medium text-stone-900 mt-1 font-sans">New invoice</h3>
-                        </div>
-                        
-                        <!-- High Fidelity Form Elements Replication -->
-                        <div class="border border-stone-100 rounded-xl p-6 bg-stone-50/30 space-y-4">
-                            <div>
-                                <label class="block text-xs text-stone-400 font-medium mb-1">Who is this invoice for?</label>
-                                <input type="text" value="Bob building co" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-stone-400 font-medium mb-1">Their email</label>
-                                <input type="text" value="bob@bobbuilding.com" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
-                            </div>
-                            <div class="grid grid-cols-3 gap-4">
-                                <div class="col-span-2">
-                                    <label class="block text-xs text-stone-400 font-medium mb-1">What did you do?</label>
-                                    <input type="text" value="dropped a package" disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed">
-                                </div>
-                                <div>
-                                    <label class="block text-xs text-stone-400 font-medium mb-1">How much?</label>
-                                    <div class="relative">
-                                        <input type="text" value="400" disabled class="w-full bg-white border border-stone-300 rounded px-3 py-2 text-sm text-stone-800 font-normal cursor-not-allowed text-left">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-xs text-bronze font-light cursor-pointer">+ Add another line</div>
-                            <div>
-                                <label class="block text-xs text-stone-400 font-medium mb-1">When is it due?</label>
-                                <select disabled class="w-full bg-white border border-stone-200 rounded px-3 py-2 text-sm text-stone-500 font-normal cursor-not-allowed">
-                                    <option>30 days</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between items-center pt-2">
-                            <span class="text-sm text-stone-400 font-medium">Total</span>
-                            <span class="text-lg font-medium text-stone-900 font-sans">£400.00</span>
-                        </div>
-                        <button class="w-full bg-darkBody text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-md shadow pointer-events-none">Send invoice</button>
-                    </div>
-
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="h-6 w-32 flex items-center">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Execution Panels</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Log precisely what you have spent</h3>
-                        <p class="text-sm text-stone-600 leading-relaxed font-light">
-                            Rapidly spin up clean ledger components on the move. Preserve structured values down to your storage tables exactly when tasks complete to lock in deductions correctly.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ROW 3: BILLS CONTROL CONSOLE SECTION (Meticulously matched to image_74357d.png) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="h-6 w-32 flex items-center">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">Expense Ledgers</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Track expenditures & running costs</h3>
-                        <p class="text-sm text-stone-600 leading-relaxed font-light">
-                            Keep rigorous tabs on structural outgoings, supply tokens, and operational infrastructure metrics. Categorize running bills cleanly down to specified business classifications automatically.
-                        </p>
-                    </div>
-                    <!-- HIGH FIDELITY BILLS INTERFACE ARCHITECTURE -->
-                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-medium text-stone-900 font-sans">My bills</span>
-                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Record a bill</button>
-                        </div>
-                        
-                        <!-- Real-time Instruction Notification component from interface upload -->
-                        <p class="text-xs text-stone-600 font-light leading-relaxed">
-                            <span class="inline-block mr-1">📱</span> <span class="font-semibold text-stone-800">Tip:</span> open the Calla Pay app and use Scan Receipt to add bills straight from your phone &mdash; they'll land here to check. <span class="text-bronze cursor-pointer hover:underline">Got a paper ledger instead? Import it &rarr;</span>
-                        </p>
-
-                        <!-- Live Bill Item Row Replication matching snapshot values precisely -->
-                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between mt-4">
-                            <div class="space-y-1">
-                                <h4 class="text-sm font-semibold text-stone-900 font-sans">Chaiiwala</h4>
-                                <p class="text-[11px] text-stone-400 font-normal">2 Jun 2026 &middot; Office and admin</p>
-                            </div>
-                            <span class="text-sm font-semibold text-stone-900 font-sans">£9.20</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROW 4: MILEAGE ACQUISITION PANEL (Meticulously matched to image_7367bf.png) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="h-6 w-32 flex items-center">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronze/10 px-2.5 py-1 rounded">HMRC Pricing Sync</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-stone-900 uppercase border-l-2 border-bronze pl-4 tracking-tight">Automated HMRC Mileage Tracking</h3>
-                        <p class="text-sm text-stone-600 leading-relaxed font-light">
-                            Your active mileage parameters auto-compile approved baseline tiers straight into your structural reporting. No manual calculations required.
-                        </p>
-                    </div>
-                    <div class="lg:col-span-7 bg-white border border-stone-200/80 rounded-xl p-8 shadow-sm space-y-6">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg font-medium text-stone-900 font-sans">My mileage</span>
-                            <button class="bg-darkBody text-white text-xs font-medium px-4 py-1.5 rounded-md shadow-sm pointer-events-none">+ Log mileage</button>
-                        </div>
-                        
-                        <!-- Master Mileage Claim Status Window Block -->
-                        <div class="bg-white border border-stone-100 rounded-xl p-6 shadow-sm space-y-1">
-                            <span class="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">THIS TAX YEAR</span>
-                            <span class="text-xs text-stone-800 font-normal block">874 miles driven for work</span>
-                            <h4 class="text-2xl font-normal text-stone-900 font-sans"><span class="font-bold">£393.30</span> you can claim back</h4>
-                            <p class="text-[11px] text-stone-400 font-normal">First 10,000 miles at 45p &mdash; 9,126 miles remaining at that rate</p>
-                        </div>
-
-                        <!-- Individual Mileage Track Row Entry Component -->
-                        <div class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm flex items-center justify-between">
-                            <div class="space-y-1">
-                                <h5 class="text-sm font-medium text-stone-900 font-sans">Lands End to John O'Groats &mdash; <span class="text-stone-500">To drop off a package</span></h5>
-                                <p class="text-[11px] text-stone-400 font-normal">25 Jun 2026 &middot; 874 miles</p>
-                            </div>
-                            <span class="text-sm font-semibold text-stone-900 font-sans">£393.30</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Bottom CTA Banner -->
-            <div class="bg-darkBg text-white py-16 text-center">
-                <h3 class="text-xl font-bold tracking-wider mb-4 uppercase">Ready to stop dreading January?</h3>
-                <button onclick="window.location.href='https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00'" class="bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition">Start Your Subscription Free Trial</button>
-            </div>
-        </section>
-
-        <!-- PAGE 3: ACCOUNTS HOLDING SECTION VIEW -->
-        <section id="page-accounts" class="page-view">
-            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
-                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Accounts SVG Header -->
-                <div class="flex justify-center mt-6 mb-4 transform scale-110">
-                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                      <title>Calla Accounts</title>
-                      <defs>
-                        <linearGradient id="accounts-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                          <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                        </linearGradient>
-                      </defs>
-                      <style>
-                        .c-italic-acc-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
-                        .c-rest-acc-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                        .sub-acc-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                      </style>
-                      <text y="75" x="200" text-anchor="middle">
-                        <tspan class="c-italic-acc-p">C</tspan><tspan class="c-rest-acc-p">alla</tspan>
-                      </text>
-                      <rect x="140" y="84" width="120" height="1" fill="url(#accounts-page-grad)"/>
-                      <text x="200" y="104" text-anchor="middle" class="sub-acc-p">ACCOUNTS</text>
-                    </svg>
-                </div>
-                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
-                    The Calla Accounts multi-user double-entry accounting software platform is currently in active configuration and structural development.
-                </p>
-                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
-            </div>
-        </section>
-
-        <!-- PAGE 4: PM HOLDING SECTION VIEW -->
-        <section id="page-pm" class="page-view">
-            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
-                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Practice Management SVG Header -->
-                <div class="flex justify-center mt-6 mb-4 transform scale-110">
-                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                      <title>Calla Practice Management</title>
-                      <defs>
-                        <linearGradient id="pm-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" style="stop-color:#B8825A;stop-opacity:0.5"/>
-                          <stop offset="100%" style="stop-color:#B8825A;stop-opacity:0"/>
-                        </linearGradient>
-                      </defs>
-                      <style>
-                        .c-italic-pm-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #B8825A; letter-spacing: 2px; }
-                        .c-rest-pm-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                        .sub-pm-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                      </style>
-                      <text y="75" x="200" text-anchor="middle">
-                        <tspan class="c-italic-pm-p">C</tspan><tspan class="c-rest-pm-p">alla</tspan>
-                      </text>
-                      <rect x="104" y="84" width="192" height="1" fill="url(#pm-page-grad)"/>
-                      <text x="200" y="104" text-anchor="middle" class="sub-pm-p">PRACTICE MANAGEMENT</text>
-                    </svg>
-                </div>
-                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
-                    Our dedicated accounting practice management orchestration engine is currently running through private pre-release internal development timelines.
-                </p>
-                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
-            </div>
-        </section>
-
-        <!-- PAGE 5: PRO HOLDING SECTION VIEW -->
-        <section id="page-pro" class="page-view">
-            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
-                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Pro SVG Header -->
-                <div class="flex justify-center mt-6 mb-4 transform scale-110">
-                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                      <title>Calla Pro</title>
-                      <defs>
-                        <linearGradient id="pro-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
-                          <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
-                        </linearGradient>
-                      </defs>
-                      <style>
-                        .c-italic-pro-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
-                        .c-rest-pro-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                        .sub-pro-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #787068; font-weight: 300; }
-                      </style>
-                      <text y="75" x="200" text-anchor="middle">
-                        <tspan class="c-italic-pro-p">C</tspan><tspan class="c-rest-pro-p">alla</tspan>
-                      </text>
-                      <rect x="158" y="84" width="84" height="1" fill="url(#pro-page-grad)"/>
-                      <text x="200" y="104" text-anchor="middle" class="sub-pro-p">PRO</text>
-                    </svg>
-                </div>
-                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
-                    The statutory accounts production suite, linked corporation filing loops, and electronic signature systems are currently inside development pipeline loops.
-                </p>
-                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
-            </div>
-        </section>
-
-        <!-- PAGE 6: PAYROLL HOLDING SECTION VIEW -->
-        <section id="page-payroll" class="page-view">
-            <div class="max-w-2xl mx-auto px-4 py-24 text-center">
-                <span class="bg-stone-100 text-stone-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded">System Holding Page</span>
-                <!-- Embedded Calla Payroll SVG Header matching accounts/pm/pro alignments -->
-                <div class="flex justify-center mt-6 mb-4 transform scale-110">
-                    <svg width="400" height="120" viewBox="0 0 400 120" role="img" xmlns="http://www.w3.org/2000/svg">
-                      <title>Calla Payroll</title>
-                      <defs>
-                        <linearGradient id="payroll-page-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" style="stop-color:#CFA07A;stop-opacity:0.5"/>
-                          <stop offset="100%" style="stop-color:#CFA07A;stop-opacity:0"/>
-                        </linearGradient>
-                      </defs>
-                      <style>
-                        .c-italic-pay-p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 300; font-size: 72px; fill: #CFA07A; letter-spacing: 2px; }
-                        .c-rest-pay-p { font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-weight: 300; font-size: 72px; fill: #1C1C1C; letter-spacing: 2px; }
-                        .sub-pay-p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; letter-spacing: 4.8px; fill: #1C1C1C; font-weight: 300; opacity: 0.4; }
-                      </style>
-                      <text y="75" x="200" text-anchor="middle">
-                        <tspan class="c-italic-pay-p">C</tspan><tspan class="c-rest-pay-p">alla</tspan>
-                      </text>
-                      <rect x="140" y="84" width="120" height="1" fill="url(#payroll-page-grad)"/>
-                      <text x="200" y="104" text-anchor="middle" class="sub-pay-p">PAYROLL</text>
-                    </svg>
-                </div>
-                <p class="text-sm text-stone-600 leading-relaxed font-light mb-8">
-                    Full UK payroll engines factoring RTI FPS/EPS transmissions and automated auto-enrolment pension upload pipelines are processing inside development cycles.
-                </p>
-                <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
-            </div>
-        </section>
-
-        <!-- REDIRECT TARGET ROUTER VIEWPORT FOR DIRECT NAV CAPTURE (Reconfigured for high-contrast scanning layout) -->
-        <section id="page-app-download" class="page-view">
-            <div class="max-w-2xl mx-auto px-4 py-20 text-center">
-                <div class="bg-darkBg border border-stone-800 rounded-xl p-8 shadow-xl">
-                    <div class="flex justify-center mb-6">
-                        <svg width="140" height="40" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-                            <text y="42" x="10" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-weight="400" font-size="44" fill="#B8825A">C</text>
-                            <text y="42" x="42" font-family="Georgia,'Times New Roman',serif" font-style="normal" font-weight="400" font-size="44" fill="#EDE8E0">alla</text>
-                            <text x="100" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" letter-spacing="4" fill="#EDE8E0" opacity="0.4">PAY</text>
-                        </svg>
-                    </div>
-                    <h2 class="text-xl font-bold text-bronze uppercase tracking-wider mb-2">Download App Component</h2>
-                    <p class="text-xs text-stone-400 mb-8 font-light">Direct Android Package Deployment System</p>
-                    
-                    <a href="https://github.com/martinprosser2907-spec/callasuite/releases/download/v1.0.0/app-release.apk" 
-                       class="inline-block bg-bronze hover:bg-bronzeHover text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded transition shadow-md mb-8">
-                        Download Mobile Installer (.APK)
-                    </a>
-                    
-                    <div class="bg-white p-3 rounded w-36 h-36 mx-auto mb-8 flex items-center justify-center shadow-xl">
-                        <svg width="124" height="124" viewBox="0 0 29 29" shape-rendering="crispEdges">
-                            <path fill="#FFFFFF" d="M0 0h29v29H0z"/>
-                            <path fill="#000000" d="M0 0h7v7H0zm22 0h7v7h-7zM0 22h7v7H0zm9-22h2v1h1v1h-1v2h-2v-1h1v-1h-1zm4 0h1v1h-1zm2 0h2v1h-1v2h-1v-1h1zm4 0h2v1h-1v1h1v1h-2v-1h-1v-1h1zm-11 3h1v1H8zm3 0h2v1h-1v1h-1zm3 0h1v1h-1zm1 1h1v1h-1zm-6 1h2v1H9zm3 0h1v1h-1zm4 0h1v2h-1zm-7 2h1v1H9zm2 0h3v1h-1v1h-2zm4 0h1v1h-1zm-9 3h1v2H7zm2 0h1v1H9zm2 0h1v1h-1zm3 0h1v1h-1zm3 0h1v2h-1v-1h-1zm-9 2h2v1H9zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm-9 2h1v1H7zm4 0h1v1h-1zm2 0h1v1h-1zm3 0h2v1h-2zm-15 1h1v1H1zm5 0h1v1H6zm1 0h1v1H7zm4 0h2v1h-2zm4 0h1v1h-1zm1 0h1v1h-1zm-15 2h1v1H2zm1 0h2v1H3zm6 0h1v1H9zm2 0h2v1h-2zm4 0h1v1h-1zm2 0h1v1h-1zm1 0h2v1h-2zm-16 2h2v1H0zm3 0h1v1H3zm5 0h3v1H8zm4 0h1v1h-1zm3 0h1v1h-1zm2 0h1v1h-1zm1 0h1v1h-1zm-19 2h1v1H0zm2 0h2v1H2zm5 0h1v1H7zm2 0h2v1H9zm3 0h2v1h-2zm5 0h1v1h-1zm2 0h1v1h-1zm-14 2h2v1H5zm4 0h2v1H9zm5 0h1v1h-1zm1 0h2v1h-2zm-12 2h1v1H3zm2 0h1v1H5zm2 0h1v1H7zm2 0h1v1H9zm5 0h1v1h-1zm2 0h2v1h-2zm-14 2h1v1H1zm2 0h2v1H3zm4 0h2v1H7zm5 0h2v1h-2zm5 0h1v1h-1zm2 0h1v1h-1zm1 0h1v1h-1zM1 1h5v5H1zm21 0h5v5h-5zM1 23h5v5H1zM2 2h3v3H2zm21 0h3v3h-3zM2 24h3v3H2zm7-15h1v1H9zm2 0h1v1h-1zm4 0h1v1h-1zm5 0h2v1h-2zm3 0h1v1h-1zm1 0h2v1h-2zm-14 2h1v2H8zm2 0h1v1h-1zm3 0h1v1h-1zm2 0h1v1h-1zm4 0h1v1h-1zm2 0h1v1h-1zm-11 2h2v1H9zm4 0h2v1h-2zm3 0h1v1h-1zm4 0h2v1h-2zm1 0h1v1h-1zm-13 2h2v1H8zm3 0h1v1h-1zm4 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm-13 2h1v1H9zm3 0h1v1h-1zm2 0h1v1h-1zm4 0h1v1h-1zm2 0h1v1h-1zm-11 2h1v1H9zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1z"/>
-                        </svg>
-                    </div>
-                    <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Back to Dashboard</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 7: PRIVACY POLICY VIEW -->
-        <section id="page-privacy" class="page-view">
-            <div class="max-w-3xl mx-auto px-4 py-16 font-light text-stone-700 leading-relaxed text-sm space-y-6">
-                <h2 class="text-2xl font-bold tracking-tight text-stone-900 uppercase">Privacy Policy</h2>
-                <p class="text-xs text-stone-400">Last updated: June 2026</p>
-                
-                <p>Welcome to Calla Suite. We are committed to protecting your business and personal data in strict compliance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
-                
-                <h3 class="text-base font-semibold text-stone-900 uppercase pt-4 border-t border-stone-100">1. Information We Collect</h3>
-                <p>To deliver our specialized accounting and single-operator toolkits, we process the following data classes:</p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>Account Credentials:</strong> Name, identity parameters, phone metrics, and email records.</li>
-                    <li><strong>Financial Ledgers:</strong> Inbound structural values, expense tracking fields, mileage records, and invoice tracking data.</li>
-                    <li><strong>Billing Details:</strong> Payment tokens processed exclusively via Stripe's encrypted routing matrix.</li>
-                </ul>
-
-                <h3 class="text-base font-semibold text-stone-900 uppercase pt-4 border-t border-stone-100">2. How We Use Data</h3>
-                <p>We process information to fulfill statutory contracts and maintain your ledger tables, specifically to:</p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li>Maintain secure profile sessions and compute business structural outgoings.</li>
-                    <li>Process OCR parameters for mobile receipt images and invoice components safely.</li>
-                    <li>Calculate exact HMRC tax claim allowances down to specified mileage baseline rates.</li>
-                </ul>
-
-                <h3 class="text-base font-semibold text-stone-900 uppercase pt-4 border-t border-stone-100">3. Data Sharing & Processors</h3>
-                <p>We do not lease data arrays to marketing metrics. Information is shared strictly with compliant infrastructure partners needed to run the ecosystem:</p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>Stripe:</strong> For handling secure, encrypted subscription verification rules.</li>
-                    <li><strong>Cloudflare & GitHub:</strong> To serve secure, SSL-encrypted content delivery channels.</li>
-                </ul>
-
-                <h3 class="text-base font-semibold text-stone-900 uppercase pt-4 border-t border-stone-100">4. Your Rights</h3>
-                <p>Under UK data laws, you hold clear parameters over your records. You maintain full rights to request immediate access to your data, verify correction structures, or enforce complete deletion rules from our data storage tables at any time.</p>
-
-                <div class="pt-6">
-                    <button onclick="switchView('home')" class="text-xs font-bold uppercase tracking-widest text-bronze hover:underline">← Return to Suite Dashboard</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- GLOBAL SYSTEM FOOTER -->
-    <footer class="bg-darkBg text-stone-400 border-t border-stone-900 py-12 text-xs font-light">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
-            <p>CALLA SUITE™ | Prosser Management | Confidential | June 2026</p>
-            <div class="flex justify-center space-x-6 text-[11px] font-medium uppercase tracking-wider items-center flex-wrap gap-y-2">
-                <a href="#" onclick="switchView('home')" class="hover:text-white transition">Home</a>
-                <a href="#" onclick="switchView('solo')" class="hover:text-white transition">Calla Solo</a>
-                <a href="#" onclick="switchView('accounts')" class="hover:text-white transition">Calla Accounts</a>
-                <a href="#" onclick="switchView('pm')" class="hover:text-white transition">Calla PM</a>
-                <a href="#" onclick="switchView('pro')" class="hover:text-white transition">Calla Pro</a>
-                <a href="#" onclick="switchView('payroll')" class="hover:text-white transition">Calla Payroll</a>
-                <a href="#" onclick="switchView('privacy')" class="text-stone-500 hover:text-white transition border-l border-stone-800 pl-4">Privacy Policy</a>
-            </div>
+        <svg width="180" height="54" viewBox="0 0 320 96" class="mb-5 -ml-1" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="11" fill="#6B6560" opacity="0.8">SOLO</text>
+        </svg>
+        <p class="text-sm text-muted font-light leading-relaxed flex-grow">
+          For sole traders and contractors. Track income, expenses, and mileage — then submit your SA100 in one click.
+        </p>
+        <div class="mt-5 pt-5 border-t border-rule flex items-baseline gap-1">
+          <span class="text-xl font-bold text-ink">£6</span>
+          <span class="text-xs text-muted">/ month</span>
         </div>
-    </footer>
+        <button onclick="go('solo')"
+          class="mt-4 w-full bg-ink hover:bg-inkSoft text-white text-xs font-bold uppercase tracking-widest py-3 rounded-xl transition">
+          Learn more
+        </button>
+      </div>
 
-    <!-- INTERACTIVE CONFIGURATION SINGLE PAGE APPS (SPA) ROUTER -->
-    <script>
-        window.onload = function() {
-            switchView('home');
-        };
+      <!-- Accounts — live -->
+      <div class="bg-white border border-rule rounded-2xl p-6 flex flex-col card-lift">
+        <div class="flex justify-between items-start mb-5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">Live now</span>
+        </div>
+        <svg width="180" height="54" viewBox="0 0 320 96" class="mb-5 -ml-1" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="11" fill="#6B6560" opacity="0.8">ACCOUNTS</text>
+        </svg>
+        <p class="text-sm text-muted font-light leading-relaxed flex-grow">
+          Double-entry bookkeeping, VAT returns, invoicing, expenses, and CIS — built for small UK businesses.
+        </p>
+        <div class="mt-5 pt-5 border-t border-rule flex items-baseline gap-1">
+          <span class="text-xl font-bold text-ink">£25</span>
+          <span class="text-xs text-muted">/ month</span>
+        </div>
+        <button onclick="go('accounts')"
+          class="mt-4 w-full bg-ink hover:bg-inkSoft text-white text-xs font-bold uppercase tracking-widest py-3 rounded-xl transition">
+          Learn more
+        </button>
+      </div>
 
-        function switchView(targetPageId) {
-            document.querySelectorAll('.page-view').forEach(element => {
-                element.classList.remove('active');
-            });
-            const activePage = document.getElementById('page-' + targetPageId);
-            if(activePage) {
-                activePage.classList.add('active');
-                window.scrollTo(0, 0);
-            }
-        }
-    </script>
+      <!-- PM — live -->
+      <div class="bg-white border border-rule rounded-2xl p-6 flex flex-col card-lift">
+        <div class="flex justify-between items-start mb-5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">Live now</span>
+        </div>
+        <svg width="180" height="54" viewBox="0 0 320 96" class="mb-5 -ml-1" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="9" fill="#6B6560" opacity="0.8">PRACTICE MGMT</text>
+        </svg>
+        <p class="text-sm text-muted font-light leading-relaxed flex-grow">
+          Client management, jobs, invoicing, AML, portal, and GoCardless billing for accountancy practices.
+        </p>
+        <div class="mt-5 pt-5 border-t border-rule flex items-baseline gap-1">
+          <span class="text-xl font-bold text-ink">£55</span>
+          <span class="text-xs text-muted">/ month</span>
+        </div>
+        <button onclick="go('pm')"
+          class="mt-4 w-full bg-ink hover:bg-inkSoft text-white text-xs font-bold uppercase tracking-widest py-3 rounded-xl transition">
+          Learn more
+        </button>
+      </div>
+
+      <!-- Pro — coming soon -->
+      <div class="bg-white border border-rule rounded-2xl p-6 flex flex-col opacity-70 card-lift">
+        <div class="flex justify-between items-start mb-5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">Coming soon</span>
+        </div>
+        <svg width="180" height="54" viewBox="0 0 320 96" class="mb-5 -ml-1" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="11" fill="#6B6560" opacity="0.8">PRO</text>
+        </svg>
+        <p class="text-sm text-muted font-light leading-relaxed flex-grow">
+          Statutory accounts, iXBRL filing to Companies House, CT600, and client approval with Yoti eSign.
+        </p>
+        <div class="mt-5 pt-5 border-t border-rule">
+          <span class="text-sm text-muted font-light">Pricing TBC</span>
+        </div>
+        <button onclick="go('pro')"
+          class="mt-4 w-full border border-rule text-muted text-xs font-bold uppercase tracking-widest py-3 rounded-xl hover:bg-stone transition">
+          Register interest
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Payroll strip -->
+    <div class="mt-6 bg-white border border-rule rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 card-lift">
+      <div class="flex items-center gap-6">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full whitespace-nowrap">In development</span>
+        <svg width="140" height="42" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="11" fill="#6B6560" opacity="0.8">PAYROLL</text>
+        </svg>
+        <p class="text-sm text-muted font-light hidden sm:block">Full RTI payroll, auto-enrolment, P60/P11D, and open banking salary payments via Crezco. Launching soon.</p>
+      </div>
+      <button onclick="go('payroll')"
+        class="flex-shrink-0 border border-rule text-muted text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-xl hover:bg-stone transition">
+        Register interest
+      </button>
+    </div>
+  </div>
+
+  <!-- Trust bar -->
+  <div class="border-t border-rule bg-white py-10">
+    <div class="max-w-4xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+      <div><p class="text-2xl font-black text-ink">UK-built</p><p class="text-xs text-muted mt-1 font-light">Designed for HMRC, Companies House &amp; MTD</p></div>
+      <div><p class="text-2xl font-black text-ink">£6/mo</p><p class="text-xs text-muted mt-1 font-light">Solo — the most affordable way to stay compliant</p></div>
+      <div><p class="text-2xl font-black text-ink">No lock-in</p><p class="text-xs text-muted mt-1 font-light">Cancel any subscription any time, online</p></div>
+      <div><p class="text-2xl font-black text-ink">One login</p><p class="text-xs text-muted mt-1 font-light">All your Calla products, one account</p></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── SOLO ──────────────────────────────────────────────────────────────── -->
+<section id="page-solo" class="page">
+
+  <!-- Solo hero -->
+  <div class="bg-white border-b border-rule">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+      <svg width="260" height="78" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+        <text y="68" x="160" text-anchor="middle">
+          <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan>
+        </text>
+        <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="11" fill="#6B6560">SOLO</text>
+      </svg>
+      <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-5">Your tax return, sorted.<br><span class="text-bronze">£6 a month.</span></h2>
+      <p class="text-muted text-base font-light max-w-lg mx-auto leading-relaxed mb-8">
+        No accounting knowledge needed. Track what you earn, log what you spend, record your mileage — then submit your Self Assessment in one click.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00"
+          class="bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition shadow">
+          Start free trial — £6/month
+        </a>
+      </div>
+      <p class="text-xs text-muted/60 mt-3">No commitment. Cancel any time.</p>
+    </div>
+  </div>
+
+  <!-- Who it's for -->
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <p class="text-xs font-semibold uppercase tracking-widest text-muted mb-8 text-center">Who Solo is for</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white border border-rule rounded-xl p-5">
+        <div class="text-2xl mb-3">🔧</div>
+        <p class="font-semibold text-sm mb-1">Contractors</p>
+        <p class="text-xs text-muted font-light leading-relaxed">Invoice clients, log mileage to site, claim tools and equipment.</p>
+      </div>
+      <div class="bg-white border border-rule rounded-xl p-5">
+        <div class="text-2xl mb-3">💻</div>
+        <p class="font-semibold text-sm mb-1">Freelancers</p>
+        <p class="text-xs text-muted font-light leading-relaxed">Track project income, software subscriptions, and home office costs.</p>
+      </div>
+      <div class="bg-white border border-rule rounded-xl p-5">
+        <div class="text-2xl mb-3">🧹</div>
+        <p class="font-semibold text-sm mb-1">Tradespeople</p>
+        <p class="text-xs text-muted font-light leading-relaxed">Scan receipts on the go, track mileage, know exactly what you owe HMRC.</p>
+      </div>
+      <div class="bg-white border border-rule rounded-xl p-5">
+        <div class="text-2xl mb-3">📦</div>
+        <p class="font-semibold text-sm mb-1">Side hustles</p>
+        <p class="text-xs text-muted font-light leading-relaxed">Selling online, tutoring, childminding — Solo keeps it clean and simple.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature rows -->
+  <div class="max-w-6xl mx-auto px-6 pb-20 space-y-20">
+
+    <!-- Feature 1: Money owed -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center feature-row">
+      <div class="feature-text space-y-4">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronzeLight px-2.5 py-1 rounded">Invoicing</span>
+        <h3 class="text-xl font-bold tracking-tight">Know exactly who owes you money</h3>
+        <p class="text-muted text-sm font-light leading-relaxed">
+          Send invoices to your clients in seconds. Solo shows you what's paid, what's waiting, and what's overdue — in plain English, not accounting jargon.
+        </p>
+      </div>
+      <div class="feature-visual bg-white border border-rule rounded-2xl p-7 shadow-sm">
+        <div class="flex justify-between items-center mb-5">
+          <span class="text-base font-semibold text-ink">Money I'm owed</span>
+          <button class="bg-ink text-white text-[11px] font-semibold px-4 py-1.5 rounded-lg pointer-events-none">+ New invoice</button>
+        </div>
+        <p class="text-xs text-bronze mb-5">Got paper records? Import them here →</p>
+        <div class="bg-stone border border-rule rounded-xl p-4 flex items-center justify-between">
+          <div class="space-y-1">
+            <p class="text-sm font-semibold">Bob Building Co</p>
+            <p class="text-[11px] text-muted">Due 25 Jul 2026</p>
+            <span class="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Waiting to be paid</span>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold">£400.00</p>
+            <p class="text-[11px] text-bronze cursor-default">They've paid ✓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Bills -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center feature-row">
+      <div class="feature-visual bg-white border border-rule rounded-2xl p-7 shadow-sm">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-base font-semibold text-ink">My bills</span>
+          <button class="bg-ink text-white text-[11px] font-semibold px-4 py-1.5 rounded-lg pointer-events-none">+ Record a bill</button>
+        </div>
+        <p class="text-xs text-muted mb-5 leading-relaxed">
+          📱 <strong>Tip:</strong> open Calla Pay and scan a receipt — it'll land here automatically.
+          <span class="text-bronze cursor-default"> Got a spreadsheet? Import it →</span>
+        </p>
+        <div class="bg-stone border border-rule rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold">Chaiiwala</p>
+            <p class="text-[11px] text-muted">2 Jun 2026 · Office and admin</p>
+          </div>
+          <span class="text-sm font-bold">£9.20</span>
+        </div>
+      </div>
+      <div class="feature-text space-y-4">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronzeLight px-2.5 py-1 rounded">Bills & expenses</span>
+        <h3 class="text-xl font-bold tracking-tight">Log what you've spent — scan or type</h3>
+        <p class="text-muted text-sm font-light leading-relaxed">
+          Photograph a receipt with Calla Pay and it fills itself in. Or type it manually. Solo works out what you can claim against tax automatically — no spreadsheets required.
+        </p>
+      </div>
+    </div>
+
+    <!-- Feature 3: Mileage -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center feature-row">
+      <div class="feature-text space-y-4">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronzeLight px-2.5 py-1 rounded">Mileage</span>
+        <h3 class="text-xl font-bold tracking-tight">HMRC mileage rate, calculated for you</h3>
+        <p class="text-muted text-sm font-light leading-relaxed">
+          Log each business journey and Solo does the maths. 45p per mile for the first 10,000, 25p after that — it tracks where you are and adds the claim to your tax return automatically.
+        </p>
+      </div>
+      <div class="feature-visual bg-white border border-rule rounded-2xl p-7 shadow-sm">
+        <div class="flex justify-between items-center mb-5">
+          <span class="text-base font-semibold text-ink">My mileage</span>
+          <button class="bg-ink text-white text-[11px] font-semibold px-4 py-1.5 rounded-lg pointer-events-none">+ Log mileage</button>
+        </div>
+        <div class="bg-bronzeLight border border-bronze/20 rounded-xl p-4 mb-4">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">This tax year</p>
+          <p class="text-2xl font-bold text-ink">£393.30 <span class="text-sm font-normal text-muted">you can claim</span></p>
+          <p class="text-[11px] text-muted mt-1">874 miles · 9,126 miles remaining at 45p</p>
+        </div>
+        <div class="bg-stone border border-rule rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold">Land's End to John O'Groats</p>
+            <p class="text-[11px] text-muted">25 Jun 2026 · 874 miles · To drop off a package</p>
+          </div>
+          <span class="text-sm font-bold">£393.30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Tax return -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center feature-row">
+      <div class="feature-visual bg-white border border-rule rounded-2xl p-7 shadow-sm">
+        <div class="mb-5">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">Tax year 2025–26</p>
+          <p class="text-base font-semibold">Your Self Assessment</p>
+        </div>
+        <div class="space-y-3 mb-6">
+          <div class="flex justify-between text-sm">
+            <span class="text-muted font-light">Income</span>
+            <span class="font-semibold">£38,400.00</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-muted font-light">What you can claim</span>
+            <span class="font-semibold text-emerald-700">− £7,240.00</span>
+          </div>
+          <div class="border-t border-rule pt-3 flex justify-between text-sm">
+            <span class="font-semibold">HMRC will tax you on</span>
+            <span class="font-bold">£31,160.00</span>
+          </div>
+        </div>
+        <button class="w-full bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest py-3 rounded-xl transition pointer-events-none">
+          Submit to HMRC →
+        </button>
+      </div>
+      <div class="feature-text space-y-4">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-bronze bg-bronzeLight px-2.5 py-1 rounded">Tax return</span>
+        <h3 class="text-xl font-bold tracking-tight">One button. Your tax return done.</h3>
+        <p class="text-muted text-sm font-light leading-relaxed">
+          At the end of the year Solo has everything it needs. It fills in your SA100, shows you exactly what you owe, and submits directly to HMRC. No accountant required.
+        </p>
+        <ul class="space-y-2 text-sm text-muted font-light">
+          <li class="flex items-start gap-2"><span class="text-bronze mt-0.5">✓</span> VAT threshold alerts at £75k, £85k, and £90k</li>
+          <li class="flex items-start gap-2"><span class="text-bronze mt-0.5">✓</span> MTD quarterly reporting if you earn over £50k</li>
+          <li class="flex items-start gap-2"><span class="text-bronze mt-0.5">✓</span> Import from any spreadsheet — any format</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Calla Pay feature -->
+  <div class="bg-inkSoft text-white py-16">
+    <div class="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-5">
+        <svg width="140" height="42" viewBox="0 0 320 96" xmlns="http://www.w3.org/2000/svg">
+          <text y="68" x="0" text-anchor="start">
+            <tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#FFFFFF">alla</tspan>
+          </text>
+          <text x="0" y="90" text-anchor="start" class="wm-sub" font-size="11" fill="#FFFFFF" opacity="0.4">PAY</text>
+        </svg>
+        <h3 class="text-xl font-bold">Your phone does the hard work</h3>
+        <p class="text-white/55 text-sm font-light leading-relaxed">
+          Calla Pay is the companion app included in your Solo subscription. Point it at any receipt and it reads the supplier, amount, date, and category — then sends it straight to Solo. No typing.
+        </p>
+        <ul class="space-y-2 text-sm text-white/60 font-light">
+          <li class="flex items-start gap-2"><span class="text-bronze">✓</span> Scan receipts with your camera</li>
+          <li class="flex items-start gap-2"><span class="text-bronze">✓</span> Log mileage from your phone</li>
+          <li class="flex items-start gap-2"><span class="text-bronze">✓</span> Works offline — syncs when you're back online</li>
+          <li class="flex items-start gap-2"><span class="text-bronze">✓</span> Included in your £6/month — nothing extra</li>
+        </ul>
+        <button onclick="go('pay')"
+          class="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white/70 hover:text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded transition">
+          Download the app →
+        </button>
+      </div>
+      <!-- Phone mockup -->
+      <div class="flex justify-center">
+        <div class="bg-ink border border-white/10 rounded-3xl p-4 w-56 shadow-2xl">
+          <div class="bg-stone rounded-2xl p-4 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-muted">Calla Pay</span>
+              <span class="w-2 h-2 bg-bronze rounded-full"></span>
+            </div>
+            <div class="bg-inkSoft rounded-xl aspect-square flex items-center justify-center">
+              <span class="text-3xl">📷</span>
+            </div>
+            <p class="text-[10px] text-center text-muted font-light">Point at a receipt</p>
+            <div class="bg-white border border-rule rounded-lg p-3 space-y-1.5">
+              <div class="flex justify-between text-[10px]">
+                <span class="text-muted">Supplier</span>
+                <span class="font-semibold text-ink">Screwfix</span>
+              </div>
+              <div class="flex justify-between text-[10px]">
+                <span class="text-muted">Amount</span>
+                <span class="font-semibold text-ink">£47.99</span>
+              </div>
+              <div class="flex justify-between text-[10px]">
+                <span class="text-muted">Category</span>
+                <span class="font-semibold text-bronze">Tools</span>
+              </div>
+            </div>
+            <button class="w-full bg-bronze text-white text-[10px] font-bold uppercase tracking-wider py-2 rounded-lg pointer-events-none">
+              Save to Solo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="max-w-2xl mx-auto px-6 py-20 text-center">
+    <p class="text-xs font-semibold uppercase tracking-widest text-muted mb-4">Simple pricing</p>
+    <div class="bg-white border border-rule rounded-2xl p-10 shadow-sm">
+      <p class="text-5xl font-black text-ink mb-2">£6<span class="text-2xl font-normal text-muted">/month</span></p>
+      <p class="text-muted text-sm font-light mb-8">Everything included. No hidden extras.</p>
+      <ul class="text-left space-y-3 text-sm text-muted font-light mb-8 max-w-xs mx-auto">
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> Invoicing — send and track</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> Bills and expenses logging</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> Mileage tracking with HMRC rates</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> Calla Pay receipt scanning app</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> SA100 Self Assessment submission</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> VAT threshold alerts</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> MTD auto-switch if you earn over £50k</li>
+        <li class="flex items-center gap-3"><span class="text-bronze text-base">✓</span> AI-powered spreadsheet import</li>
+      </ul>
+      <a href="https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00"
+        class="block w-full bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest py-4 rounded-xl transition shadow">
+        Start your free trial
+      </a>
+      <p class="text-xs text-muted/60 mt-4">Prices ex-VAT. Cancel any time.</p>
+    </div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-inkSoft text-white py-16 text-center">
+    <h3 class="text-xl font-bold tracking-tight mb-2">Ready to stop dreading January?</h3>
+    <p class="text-white/45 text-sm font-light mb-7">Join sole traders and contractors who've sorted their tax for good.</p>
+    <a href="https://buy.stripe.com/3cI4gydG0c8Q08U6SYaEE00"
+      class="inline-block bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-10 py-4 rounded transition shadow-lg">
+      Get Calla Solo — £6/month
+    </a>
+  </div>
+
+</section>
+
+<!-- ─── ACCOUNTS holding ────────────────────────────────────────────────── -->
+<section id="page-accounts" class="page">
+  <div class="max-w-xl mx-auto px-6 py-24 text-center">
+    <svg width="220" height="66" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+      <text y="68" x="160" text-anchor="middle"><tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan></text>
+      <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="11" fill="#6B6560">ACCOUNTS</text>
+    </svg>
+    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">Live — now in early access</span>
+    <p class="text-muted text-sm font-light leading-relaxed mt-6 mb-8">
+      Full double-entry bookkeeping, VAT returns, invoicing, expenses with HMRC category mapping, CIS, and bank reconciliation. Built for UK small businesses.
+    </p>
+    <a href="https://callamanager.uk" class="inline-block bg-ink hover:bg-inkSoft text-white text-xs font-bold uppercase tracking-widest px-7 py-3 rounded-xl transition mb-4">
+      Open Calla Accounts →
+    </a>
+    <br>
+    <button onclick="go('home')" class="text-xs font-semibold text-bronze hover:underline uppercase tracking-widest">← Back to suite</button>
+  </div>
+</section>
+
+<!-- ─── PM holding ─────────────────────────────────────────────────────── -->
+<section id="page-pm" class="page">
+  <div class="max-w-xl mx-auto px-6 py-24 text-center">
+    <svg width="220" height="66" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+      <text y="68" x="160" text-anchor="middle"><tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan></text>
+      <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="9" fill="#6B6560">PRACTICE MANAGEMENT</text>
+    </svg>
+    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">Live — early access</span>
+    <p class="text-muted text-sm font-light leading-relaxed mt-6 mb-8">
+      Client management, jobs, invoicing, AML compliance, client portal, document management, and GoCardless Direct Debit billing for accountancy practices. Already in use with live firms.
+    </p>
+    <a href="https://callamanager.uk" class="inline-block bg-ink hover:bg-inkSoft text-white text-xs font-bold uppercase tracking-widest px-7 py-3 rounded-xl transition mb-4">
+      Open Calla PM →
+    </a>
+    <br>
+    <button onclick="go('home')" class="text-xs font-semibold text-bronze hover:underline uppercase tracking-widest">← Back to suite</button>
+  </div>
+</section>
+
+<!-- ─── PRO holding ────────────────────────────────────────────────────── -->
+<section id="page-pro" class="page">
+  <div class="max-w-xl mx-auto px-6 py-24 text-center">
+    <svg width="220" height="66" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+      <text y="68" x="160" text-anchor="middle"><tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan></text>
+      <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="11" fill="#6B6560">PRO</text>
+    </svg>
+    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">In development — 2026</span>
+    <p class="text-muted text-sm font-light leading-relaxed mt-6 mb-8">
+      Statutory accounts production, iXBRL direct filing to Companies House, CT600, management accounts, and Yoti eSign client approval. For accountancy practices already using Calla PM.
+    </p>
+    <button class="inline-block bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-7 py-3 rounded-xl transition mb-4">
+      Register your interest
+    </button>
+    <br>
+    <button onclick="go('home')" class="text-xs font-semibold text-bronze hover:underline uppercase tracking-widest">← Back to suite</button>
+  </div>
+</section>
+
+<!-- ─── PAYROLL holding ────────────────────────────────────────────────── -->
+<section id="page-payroll" class="page">
+  <div class="max-w-xl mx-auto px-6 py-24 text-center">
+    <svg width="220" height="66" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+      <text y="68" x="160" text-anchor="middle"><tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#1C1C1E">alla</tspan></text>
+      <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="11" fill="#6B6560">PAYROLL</text>
+    </svg>
+    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">Launching soon</span>
+    <p class="text-muted text-sm font-light leading-relaxed mt-6 mb-8">
+      Full UK payroll — RTI FPS/EPS, auto-enrolment, P60, P11D, CIS contractor mode, and open banking salary payments direct to employees on pay day.
+    </p>
+    <button class="inline-block bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-7 py-3 rounded-xl transition mb-4">
+      Register your interest
+    </button>
+    <br>
+    <button onclick="go('home')" class="text-xs font-semibold text-bronze hover:underline uppercase tracking-widest">← Back to suite</button>
+  </div>
+</section>
+
+<!-- ─── CALLA PAY / APK download ──────────────────────────────────────── -->
+<section id="page-pay" class="page">
+  <div class="max-w-xl mx-auto px-6 py-20">
+    <div class="bg-inkSoft rounded-3xl p-10 text-center shadow-2xl">
+      <svg width="140" height="42" viewBox="0 0 320 96" class="mx-auto mb-6" xmlns="http://www.w3.org/2000/svg">
+        <text y="68" x="160" text-anchor="middle"><tspan class="wm-c" font-size="72" fill="#B8825A">C</tspan><tspan class="wm-rest" font-size="72" fill="#FFFFFF">alla</tspan></text>
+        <text x="160" y="90" text-anchor="middle" class="wm-sub" font-size="11" fill="#FFFFFF" opacity="0.4">PAY</text>
+      </svg>
+      <h2 class="text-xl font-bold text-white mb-2">Download Calla Pay</h2>
+      <p class="text-white/45 text-xs font-light mb-8">Android APK — included free with your Solo subscription</p>
+
+      <!-- Real QR code -->
+      <div class="bg-white rounded-2xl p-4 w-44 mx-auto mb-6 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 43" shape-rendering="crispEdges" class="w-full h-full">
+          <path fill="#ffffff" d="M0 0h43v43H0z"/>
+          <path stroke="#000000" d="M1 1.5h7m5 0h3m1 0h5m2 0h5m2 0h2m2 0h7M1 2.5h1m5 0h1m2 0h1m2 0h1m2 0h1m2 0h1m2 0h3m1 0h6m1 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h2m2 0h1m4 0h1m6 0h1m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m3 0h2m1 0h3m1 0h5m1 0h1m1 0h2m5 0h1m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m2 0h3m1 0h2m2 0h2m2 0h3m1 0h4m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h2m2 0h2m1 0h1m3 0h1m2 0h1m3 0h7m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 8.5h1m2 0h2m1 0h2m2 0h1m1 0h2m2 0h1m1 0h2M1 9.5h1m2 0h1m1 0h2m1 0h2m4 0h1m4 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h1M1 10.5h1m3 0h1m2 0h1m3 0h2m2 0h3m2 0h1m4 0h1m2 0h2m2 0h1m1 0h1m2 0h4M3 11.5h1m3 0h2m2 0h2m2 0h2m3 0h2m1 0h1m3 0h1m1 0h2m1 0h1m1 0h6M1 12.5h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h1m4 0h2M1 13.5h3m2 0h3m2 0h3m4 0h1m3 0h1m1 0h4m1 0h8m1 0h1m2 0h1M1 14.5h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h5m4 0h5m1 0h3m1 0h3m3 0h3M6 15.5h3m2 0h2m2 0h2m4 0h1m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h5M9 16.5h2m2 0h1m1 0h1m2 0h3m1 0h2m1 0h3m2 0h1m4 0h1m4 0h2M2 17.5h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m1 0h2m2 0h1M1 18.5h5m2 0h1m1 0h3m2 0h1m5 0h1m2 0h4m1 0h2m2 0h1m1 0h2m2 0h3M2 19.5h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h4m2 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h5M2 20.5h2m2 0h1m3 0h3m3 0h6m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1M1 21.5h1m1 0h2m2 0h2m1 0h1m1 0h1m1 0h1m2 0h4m4 0h1m2 0h2m3 0h1m1 0h2m2 0h1m1 0h1M1 22.5h3m1 0h2m3 0h2m1 0h2m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m5 0h1m3 0h3M1 23.5h1m3 0h1m1 0h1m1 0h1m2 0h4m2 0h1m1 0h1m2 0h1m7 0h2m3 0h2m1 0h2M1 24.5h2m2 0h2m3 0h3m2 0h3m2 0h1m1 0h2m2 0h3m2 0h3m1 0h2m2 0h1M2 25.5h1m1 0h2m1 0h2m2 0h2m2 0h2m1 0h1m3 0h1m2 0h2m3 0h1m1 0h4m2 0h1m1 0h1M2 26.5h1m2 0h1m3 0h1m3 0h1m2 0h1m1 0h6m1 0h2m4 0h2m1 0h1m3 0h1M1 27.5h5m1 0h6m2 0h1m1 0h2m4 0h2m1 0h2m1 0h2m2 0h3m1 0h1m2 0h2M1 28.5h2m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h4m1 0h2m1 0h1m6 0h1M1 29.5h1m2 0h1m1 0h3m1 0h1m4 0h1m1 0h8m3 0h1m1 0h1m3 0h1M2 30.5h2m5 0h2m1 0h2m2 0h2m2 0h1m2 0h1m2 0h2m1 0h3m2 0h3m1 0h2m1 0h1M1 31.5h1m1 0h1m2 0h4m1 0h1m2 0h2m3 0h4m4 0h1m1 0h2m5 0h1m1 0h1m1 0h2M4 32.5h2m2 0h1m4 0h1m1 0h1m2 0h7m2 0h5m2 0h1m1 0h1m1 0h1M1 33.5h1m5 0h2m2 0h6m3 0h1m1 0h6m1 0h1m3 0h8M9 34.5h2m6 0h1m1 0h1m2 0h2m5 0h3m1 0h1m3 0h1m1 0h1m1 0h1M1 35.5h7m5 0h1m1 0h1m2 0h1m1 0h2m3 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h4M1 36.5h1m5 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h2M1 37.5h1m1 0h3m1 0h1m4 0h1m1 0h4m5 0h1m1 0h1m4 0h1m2 0h5m3 0h1M1 38.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m2 0h2m1 0h3m2 0h1m4 0h3m1 0h2m1 0h1m3 0h1M1 39.5h1m1 0h3m1 0h1m2 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m4 0h1m1 0h3M1 40.5h1m5 0h1m3 0h2m1 0h2m1 0h3m2 0h2m2 0h2m2 0h1m2 0h2m1 0h1m3 0h1M1 41.5h7m1 0h1m1 0h3m5 0h2m1 0h2m1 0h1m4 0h1m1 0h2m1 0h4m1 0h1"/>
+        </svg>
+      </div>
+
+      <p class="text-white/40 text-xs mb-6">Scan this code with your Android phone to download</p>
+
+      <a href="https://github.com/martinprosser2907-spec/callasuite/releases/download/v1.0.0/app-release.apk"
+        class="inline-block bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-xl transition shadow mb-6">
+        Download APK directly
+      </a>
+
+      <p class="text-white/30 text-[11px] font-light">Android only. Enable "Install unknown apps" in your device settings.</p>
+      <div class="mt-8">
+        <button onclick="go('home')" class="text-xs font-semibold text-bronze hover:underline uppercase tracking-widest">← Back to suite</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════════════ -->
+<footer class="bg-inkSoft text-white/35 border-t border-white/5 py-12 text-xs font-light">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div>
+      <p class="font-semibold text-white/50 mb-1">CALLA SUITE™</p>
+      <p>Prosser Management · callasuite.uk · UK00004400481</p>
+    </div>
+    <nav class="flex flex-wrap justify-center gap-5 text-[11px] font-semibold uppercase tracking-widest text-white/30">
+      <a href="#" onclick="go('home')"     class="hover:text-white/70 transition">Home</a>
+      <a href="#" onclick="go('solo')"     class="hover:text-white/70 transition text-bronze/70">Solo</a>
+      <a href="#" onclick="go('accounts')" class="hover:text-white/70 transition">Accounts</a>
+      <a href="#" onclick="go('pm')"       class="hover:text-white/70 transition">PM</a>
+      <a href="#" onclick="go('pro')"      class="hover:text-white/70 transition">Pro</a>
+      <a href="#" onclick="go('payroll')"  class="hover:text-white/70 transition">Payroll</a>
+      <a href="#" onclick="go('pay')"      class="hover:text-white/70 transition">Pay App</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  function go(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById('page-' + id);
+    if (el) { el.classList.add('active'); window.scrollTo({top: 0, behavior: 'smooth'}); }
+  }
+</script>
 </body>
 </html>
