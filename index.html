@@ -9,14 +9,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            serif: ['Lora', 'Georgia', 'serif']
+            serif: ['Georgia', 'Times New Roman', 'serif']
           },
           colors: {
             bronze:      '#B8825A',
@@ -104,7 +104,7 @@
       <a href="https://callamanager.uk/solo/login" class="nav-link border-l border-white/10 pl-7 text-white/40 hover:text-white/80">Sign in</a>
     </nav>
 
-    <a href="https://pay.gocardless.com/BRT01M32DXQ61XND6JSC38Y40PNG6"
+    <a href="#solo-pricing" onclick="goPricing(); return false;"
        class="flex-shrink-0 bg-bronze hover:bg-bronzeDark text-white text-[11px] font-bold uppercase tracking-widest px-5 py-2.5 rounded transition">
       Get Started
     </a>
@@ -133,10 +133,10 @@
           class="bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-8 py-3 rounded transition shadow-lg">
           See Calla Solo
         </button>
-        <a href="https://pay.gocardless.com/BRT01M32DXQ61XND6JSC38Y40PNG6"
+        <button onclick="goPricing()"
           class="border border-white/15 hover:border-white/40 text-white/70 hover:text-white text-xs font-bold uppercase tracking-widest px-8 py-3 rounded transition">
-          Get started
-        </a>
+          See pricing
+        </button>
       </div>
       <p class="text-white/25 text-xs mt-4">No commitment. Cancel any time.</p>
     </div>
@@ -256,7 +256,7 @@
           </text>
           <text x="0" y="104" text-anchor="start" class="wm-sub" font-size="22" fill="#6B6560" opacity="0.8">PAYROLL</text>
         </svg>
-        <p class="text-sm text-muted font-light hidden sm:block">Full RTI payroll, auto-enrolment, P60/P11D, and open banking salary payments via Crezco. Launching soon.</p>
+        <p class="text-sm text-muted font-light hidden sm:block">Full RTI payroll, auto-enrolment, P60/P11D, and salary payments straight from your bank by open banking. Launching soon.</p>
       </div>
       <button onclick="go('payroll')"
         class="flex-shrink-0 border border-rule text-muted text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-xl hover:bg-stone transition">
@@ -329,10 +329,10 @@
         No accounting knowledge needed. Track what you earn, log what you spend, record your mileage — then get a Self Assessment report laid out box by box, ready to file. Direct submission to HMRC is coming soon.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-3">
-        <a href="https://pay.gocardless.com/BRT01M32DXQ61XND6JSC38Y40PNG6"
+        <button onclick="goPricing()"
           class="bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded transition shadow">
-          Get started — £10/month
-        </a>
+          See pricing
+        </button>
       </div>
       <p class="text-xs text-muted/60 mt-3">No commitment. Paid by Direct Debit. Cancel any time.</p>
     </div>
@@ -556,7 +556,7 @@
   </div>
 
   <!-- Pricing -->
-  <div class="max-w-2xl mx-auto px-6 py-20 text-center">
+  <div id="solo-pricing" class="max-w-2xl mx-auto px-6 py-20 text-center scroll-mt-24">
     <p class="text-xs font-semibold uppercase tracking-widest text-muted mb-4">Simple pricing</p>
     <div class="bg-white border border-rule rounded-2xl p-10 shadow-sm">
       <p class="text-5xl font-black text-ink mb-2">£10<span class="text-2xl font-normal text-muted">/month</span></p>
@@ -589,10 +589,10 @@
   <div class="bg-inkSoft text-white py-16 text-center">
     <h3 class="text-xl font-bold tracking-tight mb-2">Ready to stop dreading January?</h3>
     <p class="text-white/45 text-sm font-light mb-7">Join sole traders and contractors who've sorted their tax for good.</p>
-    <a href="https://pay.gocardless.com/BRT01M32DXQ61XND6JSC38Y40PNG6"
+    <button onclick="goPricing()"
       class="inline-block bg-bronze hover:bg-bronzeDark text-white text-xs font-bold uppercase tracking-widest px-10 py-4 rounded transition shadow-lg">
-      Get Calla Solo — £10/month
-    </a>
+      Get Calla Solo — from £10/month
+    </button>
   </div>
 
 </section>
@@ -714,7 +714,7 @@
   <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
     <div>
       <p class="font-semibold text-white/50 mb-1">CALLA SUITE™</p>
-      <p>Prosser Management · callasuite.uk · UK00004400481</p>
+      <p>Calla Suite Limited · callasuite.uk · UK00004400481</p>
     </div>
     <nav class="flex flex-wrap justify-center gap-5 text-[11px] font-semibold uppercase tracking-widest text-white/30">
       <a href="#" onclick="go('home')"     class="hover:text-white/70 transition">Home</a>
@@ -729,6 +729,15 @@
 </footer>
 
 <script>
+  // Open the Solo page and scroll to the pricing card. One decision
+  // point for monthly vs annual, reached from anywhere.
+  function goPricing() {
+    go('solo');
+    requestAnimationFrame(() => {
+      document.getElementById('solo-pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   function go(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const el = document.getElementById('page-' + id);
